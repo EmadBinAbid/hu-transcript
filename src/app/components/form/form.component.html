@@ -1,0 +1,101 @@
+<mat-card class="floating-box">
+  <h1 class="text-center">Meta-Curricular Form</h1>
+
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="floating-box__row">
+      <mat-form-field class="full-width">
+        <input type="text" matInput placeholder="First name" required formControlName"firstName">
+      </mat-form-field>
+    </div>
+
+    <div class="floating-box__row">
+      <mat-form-field class="full-width">
+        <input type="text" matInput placeholder="Last name" required formControlName"lastName">
+      </mat-form-field>
+    </div>
+
+    <div class="floating-box__row">
+      <mat-form-field class="full-width">
+        <input type="text" placeholder="Student ID" matInput [matAutocomplete]="auto" [formControl]="userControl" formControlName"studentID"
+          required>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+            {{user.studentID}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="floating-box__row">
+      <mat-form-field class="full-width">
+        <input type="text" matInput placeholder="Major" required formControlName"major">
+      </mat-form-field>
+    </div>
+<!--
+    <div class="floating-box__row">
+      <h3>Please mention all categories in which you have notable accomplishments during your time at HU:</h3>
+      <div class="floating-box__row">
+        <mat-checkbox [(ngModel)]="leadershipCat" formControlName'leadershipCat'>Student Leadership</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'clubCat'>HU Club/Society/Organization</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'devCat'>Career Development</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'wellnessCat'>Student Wellness Services</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'campusCat'>Campus Involvment</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'communityCat'>Community Service</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'globalCat'>Global Engagement</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'academicCat'>Academic Presentation</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'officialCat'>University Official Committee</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'peerCat'>Peer Tutoring</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'athleticsCat'>Athletics</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'creativeCat'>Publication/ Creative Activity</mat-checkbox>
+      </div>
+      <div class="floating-box__row">
+        <mat-checkbox ngModel formControlName'awardCat'>Award/Scholarship</mat-checkbox>
+      </div>
+      <div class="floating-box__row checkbox">
+        <mat-checkbox ngModel formControlName'otherCat' class="mat-checkbox--input">
+          <mat-form-field>
+            <input type="text" matInput placeholder="Other" ngModel formControlName"otherCategory">
+          </mat-form-field>
+        </mat-checkbox>
+      </div>
+    </div> -->
+
+    <div *ngIf=leadershipCat>
+      <hut-leadership></hut-leadership>
+    </div>
+
+    <div class="floating-box__row">
+      <button type="submit" mat-raised-button color="primary">Submit</button>
+    </div>
+  </form>
+
+  <div class="floating-box__row" *ngIf="errorFlag">
+    <div class="floating-box__error">
+      {{errorMsg}}
+    </div>
+  </div>
+
+</mat-card>

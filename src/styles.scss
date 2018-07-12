@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~compass-mixins/lib/compass";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import "~src/styles/palette";
+@import "~src/styles/functions";
+@import "~src/styles/variables";
+
+@import "~src/styles/floating-box";
+@import "~src/styles/categories";
+
+* {
+    @include box-sizing(border-box);
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    background: #ab39bc1c;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+}
+
+.app__logo {
+    text-align: center;
+    padding: 3em 0 0;
+
+    img {
+        top: 2em;
+        position: relative;
+        z-index: 5;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.mat-checkbox--input {
+    >label {
+        >div {
+            margin-right: 8px;
+        }
+    }
+}
