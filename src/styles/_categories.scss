@@ -34,3 +34,10 @@
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
+.form-category__remove {
+    &.mat-mini-fab {
+        float: right;
+        margin-top: 7px;
+    }
+}

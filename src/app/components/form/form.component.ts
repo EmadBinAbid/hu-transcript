@@ -44,8 +44,21 @@ export class FormComponent implements OnInit {
     return this.userForm.get('leadershipCategory') as FormArray;
   };
 
-  addLeadershipEntry() {
-    this.leadershipCategory.push(this.formBuilder.group(new LeadershipEntry()));
+  addEntry(category) {
+    switch (category) {
+      case 'leadership':
+        this.leadershipCategory.push(this.formBuilder.group(new LeadershipEntry()));
+        break;
+      case n:
+        console.log('bubble');
+        break;
+      default:
+        return;
+    }
+  }
+
+  removeCurrentEvent(index) {
+    this.leadershipCategory.removeAt(index);
   }
 
   userControl = new FormControl();
