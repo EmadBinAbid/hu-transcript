@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { LeadershipEntry, UserDetails, UserCategories } from '../../models/user-data';
@@ -36,8 +36,16 @@ export class FormComponent implements OnInit {
       studentID: new FormControl(),
       major: new FormControl(),
       userCategories: formBuilder.group(new UserCategories),
-      leadershipCategory: formBuilder.group(new LeadershipEntry())
+      leadershipCategory: this.formBuilder.array([])
     });
+  }
+
+  get leadershipCategory(): FormArray {
+    return this.userForm.get('leadershipCategory') as FormArray;
+  };
+
+  addLeadershipEntry() {
+    this.leadershipCategory.push(this.formBuilder.group(new LeadershipEntry()));
   }
 
   userControl = new FormControl();
@@ -45,6 +53,7 @@ export class FormComponent implements OnInit {
   filteredUsers: Observable<User[]>;
 
   ngOnInit() {
+    this.leadershipCategory.push(this.formBuilder.group(new LeadershipEntry()));
     this.filteredUsers = this.userControl.valueChanges
       .pipe(
         startWith<string | User>(''),

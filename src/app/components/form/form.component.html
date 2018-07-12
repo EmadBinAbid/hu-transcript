@@ -84,6 +84,11 @@
 
     <div *ngIf="userForm.value.userCategories.leadership">
       <hut-leadership [group]="userForm"></hut-leadership>
+      <div class="floating-box__row extra">
+        <button (click)="addLeadershipEntry()" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
     </div>
 
     <div class="floating-box__row">

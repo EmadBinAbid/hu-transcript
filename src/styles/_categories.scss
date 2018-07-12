@@ -1,8 +1,17 @@
 .form-category {
     border-top: 1px solid $divider-color;
     padding: 10px 0 20px;
-    margin: 0 0 2em;
     padding-top: 1em;
+}
+
+.form-category__heading {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 15px;
+    border-radius: 3px;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #fff;
 }
 
 .form-category__file-button {
@@ -16,4 +25,12 @@
         height: 100%;
         opacity: 0;
     }
+}
+
+.form-category__entry {
+    margin: 20px 0;
+    background: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }

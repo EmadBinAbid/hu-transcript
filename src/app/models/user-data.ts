@@ -4,7 +4,7 @@ export class UserDetails {
   studentID: string = '';
   major: string = '';
   categories: Array<Boolean>;
-  leadershipCategory: Array<LeadershipEntry>;
+  leadershipCategory: LeadershipEntry[];
 }
 
 export class LeadershipEntry {

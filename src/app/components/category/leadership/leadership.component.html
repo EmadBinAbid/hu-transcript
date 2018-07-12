@@ -1,9 +1,9 @@
 <div [formGroup]="group">
-  <div class="form-category" formGroupName="leadershipCategory">
+  <div class="form-category" formArrayName="leadershipCategory">
     <h3>Student Leadership</h3>
 
-    <div>
-      <h4>Entry #{{i + 1}}</h4>
+    <div class="form-category__entry" *ngFor="let entry of leadershipCategory.controls; let i=index" [formGroupName]="i">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
       <div class="floating-box__row">
         <mat-form-field class="full-width">
           <input type="text" matInput placeholder="HUSC Club/ Project" required formControlName="club">
@@ -28,19 +28,13 @@
         </mat-form-field>
       </div>
 
-      <div class="floating-box__row extra">
+      <div class="floating-box__row">
+        <p>Enter proof:</p>
         <div class="form-category__file-button">
           <button type="submit" mat-raised-button color="accent">Upload</button>
           <input type="file" nameformControlName="file">
         </div>
       </div>
     </div>
-
-    <div class="floating-box__row">
-      <button (click)="addLair()" type="button" mat-raised-button color="primary">
-        Add another entry
-      </button>
-    </div>
-
   </div>
 </div>
