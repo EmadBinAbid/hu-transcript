@@ -19,8 +19,8 @@
         <input type="text" placeholder="Student ID" matInput [matAutocomplete]="auto" [formControl]="userControl" formControlName="studentID"
           required>
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let user of filteredUsers | async" [value]="user.studentID">
-            {{user.studentID}}
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option.studentID">
+            {{option.studentID}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
@@ -35,13 +35,13 @@
     <div class="floating-box__row" formGroupName="userCategories">
       <h3>Please mention all categories in which you have notable accomplishments during your time at HU:</h3>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='leadership'>Student Leadership</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(leadershipCategory)" formControlName='leadership'>Student Leadership</mat-checkbox>
       </div>
       <div class="floating-box__row">
         <mat-checkbox formControlName='club'>HU Club/Society/Organization</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='development'>Career Development</mat-checkbox>
+        <mat-checkbox formControlName='dev'>Career Development</mat-checkbox>
       </div>
       <div class="floating-box__row">
         <mat-checkbox formControlName='wellness'>Student Wellness Services</mat-checkbox>
@@ -85,7 +85,7 @@
     <div *ngIf="userForm.value.userCategories.leadership">
       <hut-leadership (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-leadership>
       <div class="floating-box__row extra">
-        <button (click)="addEntry('leadership')" type="button" mat-raised-button color="primary">
+        <button (click)="addEntry(leadershipCategory)" type="button" mat-raised-button color="primary">
           Add another entry
         </button>
       </div>

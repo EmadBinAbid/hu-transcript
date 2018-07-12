@@ -4,11 +4,25 @@ export class UserDetails {
   studentID: string = '';
   major: string = '';
   categories: Array<Boolean>;
-  leadershipCategory: LeadershipEntry[];
+
+  leadershipCategory: EventEntry[];
+  clubCategory: EventEntry[];
+  devCategory: EventEntry[];
+  wellnessCategory: EventEntry[];
+  campusCategory: EventEntry[];
+  communityCategory: EventEntry[];
+  globalCategory: EventEntry[];
+  academicCategory: EventEntry[];
+  officialCategory: EventEntry[];
+  peerCategory: EventEntry[];
+  athleticsCategory: EventEntry[];
+  creativeCategory: EventEntry[];
+  awardCategory: EventEntry[];
+  otherCategory: EventEntry[];
 }
 
-export class LeadershipEntry {
-  club: Array<'string'> = [];
+export class EventEntry {
+  title: Array<'string'> = [];
   position: Array<'string'> = [];
   from: Array<'string'> = [];
   to: Array<'string'> = [];
@@ -18,7 +32,7 @@ export class LeadershipEntry {
 export class UserCategories {
   leadership: Boolean = false;
   club: Boolean = false;
-  development: Boolean = false;
+  dev: Boolean = false;
   wellness: Boolean = false;
   campus: Boolean = false;
   community: Boolean = false;

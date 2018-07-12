@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { LeadershipEntry, UserDetails, UserCategories } from '../../models/user-data';
+import { EventEntry, UserDetails, UserCategories } from '../../models/user-data';
 
 export interface User {
   studentID: string;
@@ -36,7 +36,20 @@ export class FormComponent implements OnInit {
       studentID: new FormControl(),
       major: new FormControl(),
       userCategories: formBuilder.group(new UserCategories),
-      leadershipCategory: this.formBuilder.array([])
+      leadershipCategory: this.formBuilder.array([]),
+      clubCategory: this.formBuilder.array([]),
+      devCategory: this.formBuilder.array([]),
+      wellnessCategory: this.formBuilder.array([]),
+      campusCategory: this.formBuilder.array([]),
+      communityCategory: this.formBuilder.array([]),
+      globalCategory: this.formBuilder.array([]),
+      academicCategory: this.formBuilder.array([]),
+      officialCategory: this.formBuilder.array([]),
+      peerCategory: this.formBuilder.array([]),
+      athleticsCategory: this.formBuilder.array([]),
+      creativeCategory: this.formBuilder.array([]),
+      awardCategory: this.formBuilder.array([]),
+      otherCategory: this.formBuilder.array([])
     });
   }
 
@@ -44,16 +57,67 @@ export class FormComponent implements OnInit {
     return this.userForm.get('leadershipCategory') as FormArray;
   };
 
+  get clubCategory(): FormArray {
+    return this.userForm.get('clubCategory') as FormArray;
+  };
+
+  get devCategory(): FormArray {
+    return this.userForm.get('devCategory') as FormArray;
+  };
+
+  get wellnessCategory(): FormArray {
+    return this.userForm.get('wellnessCategory') as FormArray;
+  };
+
+  get campusCategory(): FormArray {
+    return this.userForm.get('campusCategory') as FormArray;
+  };
+
+  get communityCategory(): FormArray {
+    return this.userForm.get('communityCategory') as FormArray;
+  };
+
+  get globalCategory(): FormArray {
+    return this.userForm.get('globalCategory') as FormArray;
+  };
+
+  get academicCategory(): FormArray {
+    return this.userForm.get('academicCategory') as FormArray;
+  };
+
+  get officialCategory(): FormArray {
+    return this.userForm.get('officialCategory') as FormArray;
+  };
+
+  get peerCategory(): FormArray {
+    return this.userForm.get('peerCategory') as FormArray;
+  };
+
+  get athleticsCategory(): FormArray {
+    return this.userForm.get('athleticsCategory') as FormArray;
+  };
+
+  get creativeCategory(): FormArray {
+    return this.userForm.get('creativeCategory') as FormArray;
+  };
+
+  get awardCategory(): FormArray {
+    return this.userForm.get('awardCategory') as FormArray;
+  };
+
+  get otherCategory(): FormArray {
+    return this.userForm.get('otherCategory') as FormArray;
+  };
+
   addEntry(category) {
-    switch (category) {
-      case 'leadership':
-        this.leadershipCategory.push(this.formBuilder.group(new LeadershipEntry()));
-        break;
-      case n:
-        console.log('bubble');
-        break;
-      default:
-        return;
+    category.push(this.formBuilder.group(new EventEntry()));
+  }
+
+  addSingleEntry(category) {
+    if (!category.length) {
+      this.addEntry(category);
+    } else {
+      category.controls.splice(0);
     }
   }
 
@@ -63,11 +127,10 @@ export class FormComponent implements OnInit {
 
   userControl = new FormControl();
 
-  filteredUsers: Observable<User[]>;
+  filteredOptions: Observable<User[]>;
 
   ngOnInit() {
-    this.leadershipCategory.push(this.formBuilder.group(new LeadershipEntry()));
-    this.filteredUsers = this.userControl.valueChanges
+    this.filteredOptions = this.userControl.valueChanges
       .pipe(
         startWith<string | User>(''),
         map(value => typeof value === 'string' ? value : value.studentID),
