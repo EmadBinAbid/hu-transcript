@@ -3,11 +3,11 @@ export class UserDetails {
   lastName: string = '';
   studentID: string = '';
   major: string = '';
-  categories: Array<Object>;
-  leadershipCategory: LeadershipCategory;
+  categories: Array<Boolean>;
+  leadershipCategory: Array<LeadershipEntry>;
 }
 
-export class LeadershipCategory {
+export class LeadershipEntry {
   club: Array<'string'> = [];
   position: Array<'string'> = [];
   from: Array<'string'> = [];

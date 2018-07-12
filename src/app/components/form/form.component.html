@@ -83,7 +83,7 @@
     </div>
 
     <div *ngIf="userForm.value.userCategories.leadership">
-      <hut-leadership></hut-leadership>
+      <hut-leadership [group]="userForm"></hut-leadership>
     </div>
 
     <div class="floating-box__row">

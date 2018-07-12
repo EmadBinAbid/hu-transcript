@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { LeadershipCategory, UserDetails, UserCategories } from '../../models/user-data';
+import { LeadershipEntry, UserDetails, UserCategories } from '../../models/user-data';
 
 export interface User {
   studentID: string;
@@ -29,10 +29,6 @@ export class FormComponent implements OnInit {
     this.userForm = this.createFormGroup(formBuilder);
   }
 
-  countries = ['USA', 'Germany', 'Italy', 'France'];
-
-  requestTypes = ['Claim', 'Feedback', 'Help Request'];
-
   createFormGroup(formBuilder: FormBuilder) {
     return new FormGroup({
       firstName: new FormControl(),
@@ -40,10 +36,9 @@ export class FormComponent implements OnInit {
       studentID: new FormControl(),
       major: new FormControl(),
       userCategories: formBuilder.group(new UserCategories),
-      leadershipCategory: formBuilder.group(new LeadershipCategory())
+      leadershipCategory: formBuilder.group(new LeadershipEntry())
     });
   }
-
 
   userControl = new FormControl();
 

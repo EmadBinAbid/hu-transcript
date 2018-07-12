@@ -37,6 +37,10 @@
 .floating-box__row {
     margin-bottom: 1em;
 
+    &.extra {
+        margin-bottom: 2.5em;
+    }
+
     &.checkbox {
 
         div {

@@ -1,6 +1,19 @@
-.form__category {
+.form-category {
     border-top: 1px solid $divider-color;
-    border-bottom: 1px solid $divider-color;
     padding: 10px 0 20px;
-    margin-bottom: 3em;
+    margin: 0 0 2em;
+    padding-top: 1em;
+}
+
+.form-category__file-button {
+    position: relative;
+
+    input[type='file'] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 88px;
+        height: 100%;
+        opacity: 0;
+    }
 }

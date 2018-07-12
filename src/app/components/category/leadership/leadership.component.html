@@ -1,27 +1,46 @@
-<div class="form__category" formGroupName="leadershipCategory">
-  <h3>Student Leadership</h3>
+<div [formGroup]="group">
+  <div class="form-category" formGroupName="leadershipCategory">
+    <h3>Student Leadership</h3>
 
-  <div class="floating-box__row">
-    <mat-form-field class="full-width">
-      <input type="text" matInput placeholder="Major" required formControlName="major">
-    </mat-form-field>
-  </div>
+    <div>
+      <h4>Entry #{{i + 1}}</h4>
+      <div class="floating-box__row">
+        <mat-form-field class="full-width">
+          <input type="text" matInput placeholder="HUSC Club/ Project" required formControlName="club">
+        </mat-form-field>
+      </div>
 
-  <div class="floating-box__row">
-    <mat-form-field class="full-width">
-      <input type="text" matInput placeholder="Major" required formControlName="major">
-    </mat-form-field>
-  </div>
+      <div class="floating-box__row">
+        <mat-form-field class="full-width">
+          <input type="text" matInput placeholder="Position" required formControlName="position">
+        </mat-form-field>
+      </div>
 
-  <div class="floating-box__row">
-    <mat-form-field class="full-width">
-      <input type="text" matInput placeholder="Major" required formControlName="major">
-    </mat-form-field>
-  </div>
+      <div class="floating-box__row">
+        <mat-form-field class="full-width">
+          <input type="text" matInput placeholder="From" required formControlName="from">
+        </mat-form-field>
+      </div>
 
-  <div class="floating-box__row">
-    <mat-form-field class="full-width">
-      <input type="text" matInput placeholder="Major" required formControlName="major">
-    </mat-form-field>
+      <div class="floating-box__row">
+        <mat-form-field class="full-width">
+          <input type="text" matInput placeholder="To" required formControlName="to">
+        </mat-form-field>
+      </div>
+
+      <div class="floating-box__row extra">
+        <div class="form-category__file-button">
+          <button type="submit" mat-raised-button color="accent">Upload</button>
+          <input type="file" nameformControlName="file">
+        </div>
+      </div>
+    </div>
+
+    <div class="floating-box__row">
+      <button (click)="addLair()" type="button" mat-raised-button color="primary">
+        Add another entry
+      </button>
+    </div>
+
   </div>
 </div>
