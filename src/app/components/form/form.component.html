@@ -1,26 +1,25 @@
 <mat-card class="floating-box">
   <h1 class="text-center">Meta-Curricular Form</h1>
 
-
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+  <form [formGroup]="userForm" (ngSubmit)="submitForm()" novalidate>
     <div class="floating-box__row">
       <mat-form-field class="full-width">
-        <input type="text" matInput placeholder="First name" required formControlName"firstName">
+        <input type="text" matInput placeholder="First name" required formControlName="firstName">
       </mat-form-field>
     </div>
 
     <div class="floating-box__row">
       <mat-form-field class="full-width">
-        <input type="text" matInput placeholder="Last name" required formControlName"lastName">
+        <input type="text" matInput placeholder="Last name" required formControlName="lastName">
       </mat-form-field>
     </div>
 
     <div class="floating-box__row">
       <mat-form-field class="full-width">
-        <input type="text" placeholder="Student ID" matInput [matAutocomplete]="auto" [formControl]="userControl" formControlName"studentID"
+        <input type="text" placeholder="Student ID" matInput [matAutocomplete]="auto" [formControl]="userControl" formControlName="studentID"
           required>
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+          <mat-option *ngFor="let user of filteredUsers | async" [value]="user.studentID">
             {{user.studentID}}
           </mat-option>
         </mat-autocomplete>
@@ -29,61 +28,61 @@
 
     <div class="floating-box__row">
       <mat-form-field class="full-width">
-        <input type="text" matInput placeholder="Major" required formControlName"major">
+        <input type="text" matInput placeholder="Major" required formControlName="major">
       </mat-form-field>
     </div>
-<!--
-    <div class="floating-box__row">
+
+    <div class="floating-box__row" formGroupName="userCategories">
       <h3>Please mention all categories in which you have notable accomplishments during your time at HU:</h3>
       <div class="floating-box__row">
-        <mat-checkbox [(ngModel)]="leadershipCat" formControlName'leadershipCat'>Student Leadership</mat-checkbox>
+        <mat-checkbox formControlName='leadership'>Student Leadership</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'clubCat'>HU Club/Society/Organization</mat-checkbox>
+        <mat-checkbox formControlName='club'>HU Club/Society/Organization</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'devCat'>Career Development</mat-checkbox>
+        <mat-checkbox formControlName='development'>Career Development</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'wellnessCat'>Student Wellness Services</mat-checkbox>
+        <mat-checkbox formControlName='wellness'>Student Wellness Services</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'campusCat'>Campus Involvment</mat-checkbox>
+        <mat-checkbox formControlName='campus'>Campus Involvment</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'communityCat'>Community Service</mat-checkbox>
+        <mat-checkbox formControlName='community'>Community Service</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'globalCat'>Global Engagement</mat-checkbox>
+        <mat-checkbox formControlName='global'>Global Engagement</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'academicCat'>Academic Presentation</mat-checkbox>
+        <mat-checkbox formControlName='academic'>Academic Presentation</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'officialCat'>University Official Committee</mat-checkbox>
+        <mat-checkbox formControlName='official'>University Official Committee</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'peerCat'>Peer Tutoring</mat-checkbox>
+        <mat-checkbox formControlName='peer'>Peer Tutoring</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'athleticsCat'>Athletics</mat-checkbox>
+        <mat-checkbox formControlName='athletics'>Athletics</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'creativeCat'>Publication/ Creative Activity</mat-checkbox>
+        <mat-checkbox formControlName='creative'>Publication/ Creative Activity</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox ngModel formControlName'awardCat'>Award/Scholarship</mat-checkbox>
+        <mat-checkbox formControlName='award'>Award/Scholarship</mat-checkbox>
       </div>
       <div class="floating-box__row checkbox">
-        <mat-checkbox ngModel formControlName'otherCat' class="mat-checkbox--input">
+        <mat-checkbox formControlName='other' class="mat-checkbox--input">
           <mat-form-field>
-            <input type="text" matInput placeholder="Other" ngModel formControlName"otherCategory">
+            <input type="text" matInput placeholder="Other" formControlName="otherText">
           </mat-form-field>
         </mat-checkbox>
       </div>
-    </div> -->
+    </div>
 
-    <div *ngIf=leadershipCat>
+    <div *ngIf="userForm.value.userCategories.leadership">
       <hut-leadership></hut-leadership>
     </div>
 
@@ -91,6 +90,7 @@
       <button type="submit" mat-raised-button color="primary">Submit</button>
     </div>
   </form>
+
 
   <div class="floating-box__row" *ngIf="errorFlag">
     <div class="floating-box__error">
