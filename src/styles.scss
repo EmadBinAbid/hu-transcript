@@ -3,12 +3,23 @@
 @import "~compass-mixins/lib/compass";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-@import "~src/styles/palette";
 @import "~src/styles/functions";
 @import "~src/styles/variables";
 
 @import "~src/styles/floating-box";
+@import "~src/styles/buttons";
 @import "~src/styles/categories";
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+@import "~src/styles/my-theme";
+
+.my-theme {
+    // use our theme with angular-material-theme mixin
+    @include angular-material-theme($my-theme);
+}
 
 * {
     @include box-sizing(border-box);
@@ -60,4 +71,10 @@ h6 {
             margin-right: 8px;
         }
     }
+}
+
+.login-button {
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }

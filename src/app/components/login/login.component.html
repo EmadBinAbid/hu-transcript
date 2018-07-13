@@ -1,3 +1,20 @@
-<p>
-  login works!
-</p>
+<mat-card class="floating-box small">
+  <h1 class="text-center">Login</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="submitForm()" novalidate>
+    <div class="floating-box__row">
+      <mat-form-field class="full-width">
+        <input type="text" matInput placeholder="Email" required formControlName="email">
+      </mat-form-field>
+    </div>
+
+    <div class="floating-box__row">
+      <mat-form-field class="full-width">
+        <input type="password" matInput placeholder="Password" required formControlName="password">
+      </mat-form-field>
+    </div>
+
+    <div class="floating-box__row">
+      <button type="submit" mat-raised-button color="primary" class="hut-button--wide">Login</button>
+    </div>
+  </form>
+</mat-card>

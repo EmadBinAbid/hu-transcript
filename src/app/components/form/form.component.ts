@@ -31,6 +31,13 @@ export class FormComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.userForm = this.createFormGroup(formBuilder);
+    this.formResultsLocal = (localStorage.getItem('formSubmissionList') !== null) ? JSON.parse(localStorage.getItem('formSubmissionList')) : [];
+
+    if (!this.formResultsLocal || this.formResultsLocal.length === 0) {
+      this.formResults;
+    } else {
+      this.formResults = this.formResultsLocal;
+    }
   }
 
   createFormGroup(formBuilder: FormBuilder) {
@@ -142,10 +149,6 @@ export class FormComponent implements OnInit {
       );
   }
 
-  displayFn(user?: User): string | undefined {
-    return user ? user.studentID : undefined;
-  }
-
   private _filter(studentID: string): User[] {
     const filterValue = studentID.toLowerCase();
 
@@ -153,8 +156,7 @@ export class FormComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.userForm.value.studentID);
-    console.log(this.userForm);
+    this.userForm.value.studentID = this.userControl.value;
 
     if (this.userForm.valid) {
       // Make sure to create a deep copy of the form-model
@@ -189,7 +191,8 @@ export class FormComponent implements OnInit {
         this.currentEntry
       )
 
-      localStorage.setItem('formResultsLocal', JSON.stringify(this.formResults));
+      localStorage.setItem('formSubmissionList', JSON.stringify(this.formResults));
+      this.userForm.reset();
     }
   }
 }

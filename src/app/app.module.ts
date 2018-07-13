@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Angular Material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule, MatDialogModule, MatSnackBarModule, MatMenuModule, MatTooltipModule, MatCardModule, MatButtonModule, MatCheckboxModule, MatInputModule} from '@angular/material';
+import {MatAutocompleteModule, MatDialogModule, MatSnackBarModule, MatMenuModule, MatTooltipModule, MatCardModule, MatButtonModule, MatCheckboxModule, MatInputModule, MatTableModule} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +26,7 @@ import { AthleticsComponent } from './components/category/athletics/athletics.co
 import { CreativeComponent } from './components/category/creative/creative.component';
 import { AwardComponent } from './components/category/award/award.component';
 import { OtherComponent } from './components/category/other/other.component';
+import { DetailsComponent } from './components/details/details.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { OtherComponent } from './components/category/other/other.component';
     CreativeComponent,
     AwardComponent,
     OtherComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,7 @@ import { OtherComponent } from './components/category/other/other.component';
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule

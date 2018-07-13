@@ -1,6 +1,6 @@
 <div [formGroup]="group">
     <div class="form-category" formArrayName="clubCategory">
-      <h3>Community Service</h3>
+      <h3>HU Club/Organization/Society</h3>
 
       <div class="form-category__entry" *ngFor="let entry of clubCategory.controls; let i=index" [formGroupName]="i">
         <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
@@ -11,13 +11,13 @@
 
         <div class="floating-box__row">
           <mat-form-field class="full-width">
-            <input type="text" matInput placeholder="Project/Thesis" required formControlName="title">
+            <input type="text" matInput placeholder="Club/Society" required formControlName="title">
           </mat-form-field>
         </div>
 
         <div class="floating-box__row">
           <mat-form-field class="full-width">
-            <input type="text" matInput placeholder="Description" required formControlName="position">
+            <input type="text" matInput placeholder="Position" required formControlName="position">
           </mat-form-field>
         </div>
 

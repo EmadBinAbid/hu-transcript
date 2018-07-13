@@ -1,0 +1,19 @@
+.user-details {
+    display: flex;
+    flex-wrap:  wrap;
+}
+
+.user-details__column {
+    display: flex;
+    flex: 0 0 50%;
+    margin: 10px 0;
+}
+
+.user-details__label {
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+h3 {
+    margin-top: 3em;
+}

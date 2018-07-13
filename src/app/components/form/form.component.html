@@ -16,14 +16,13 @@
 
     <div class="floating-box__row">
       <mat-form-field class="full-width">
-        <input type="text" placeholder="Student ID" matInput [matAutocomplete]="auto" formControlName="studentID"
-          required>
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option.studentID">
-            {{option.studentID}}
-          </mat-option>
-        </mat-autocomplete>
+        <input type="text" placeholder="Student ID" matInput [matAutocomplete]="auto" [formControl]="userControl" formControlName="studentID">
       </mat-form-field>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.studentID">
+          {{option.studentID}}
+        </mat-option>
+      </mat-autocomplete>
     </div>
 
     <div class="floating-box__row">
@@ -35,49 +34,49 @@
     <div class="floating-box__row" formGroupName="userCategories">
       <h3>Please mention all categories in which you have notable accomplishments during your time at HU:</h3>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(leadershipCategory)" formControlName='leadership'>Student Leadership</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(leadershipCategory)" formControlName='leadership'>Student Leadership</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(clubCategory)" formControlName='club'>HU Club/Society/Organization</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(clubCategory)" formControlName='club'>HU Club/Society/Organization</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(devCategory)" formControlName='dev'>Career Development</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(devCategory)" formControlName='dev'>Career Development</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(wellnessCategory)" formControlName='wellness'>Student Wellness Services</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(wellnessCategory)" formControlName='wellness'>Student Wellness Services</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(campusCategory)" formControlName='campus'>Campus Involvment</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(campusCategory)" formControlName='campus'>Campus Involvment</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(communityCategory)" formControlName='community'>Community Service</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(communityCategory)" formControlName='community'>Community Service</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(globalCategory)" formControlName='global'>Global Engagement</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(globalCategory)" formControlName='global'>Global Engagement</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(academicCategory)" formControlName='academic'>Academic Presentation</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(academicCategory)" formControlName='academic'>Academic Presentation</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(officialCategory)" formControlName='official'>University Official Committee</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(officialCategory)" formControlName='official'>University Official Committee</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(peerCategory)" formControlName='peer'>Peer Tutoring</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(peerCategory)" formControlName='peer'>Peer Tutoring</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(athleticsCategory)" formControlName='athletics'>Athletics</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(athleticsCategory)" formControlName='athletics'>Athletics</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(creativeCategory)" formControlName='creative'>Publication/ Creative Activity</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(creativeCategory)" formControlName='creative'>Publication/Creative Activity</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox (click)="addSingleEntry(awardCategory)" formControlName='award'>Award/Scholarship</mat-checkbox>
+        <mat-checkbox (change)="addSingleEntry(awardCategory)" formControlName='award'>Award/Scholarship</mat-checkbox>
       </div>
       <div class="floating-box__row checkbox">
-        <mat-checkbox (click)="addSingleEntry(otherCategory)" formControlName='other'>
-            <mat-form-field>
-                <input (click)="$event.stopPropagation()" type="text" matInput placeholder="Other" formControlName="otherText">
-              </mat-form-field>
+        <mat-checkbox (change)="addSingleEntry(otherCategory)" formControlName='other'>
+          <mat-form-field>
+            <input (click)="$event.stopPropagation()" type="text" matInput placeholder="Other" formControlName="otherText">
+          </mat-form-field>
         </mat-checkbox>
       </div>
 
