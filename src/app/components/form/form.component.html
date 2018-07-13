@@ -16,7 +16,7 @@
 
     <div class="floating-box__row">
       <mat-form-field class="full-width">
-        <input type="text" placeholder="Student ID" matInput [matAutocomplete]="auto" [formControl]="userControl" formControlName="studentID"
+        <input type="text" placeholder="Student ID" matInput [matAutocomplete]="auto" formControlName="studentID"
           required>
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option.studentID">
@@ -38,54 +38,173 @@
         <mat-checkbox (click)="addSingleEntry(leadershipCategory)" formControlName='leadership'>Student Leadership</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='club'>HU Club/Society/Organization</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(clubCategory)" formControlName='club'>HU Club/Society/Organization</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='dev'>Career Development</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(devCategory)" formControlName='dev'>Career Development</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='wellness'>Student Wellness Services</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(wellnessCategory)" formControlName='wellness'>Student Wellness Services</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='campus'>Campus Involvment</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(campusCategory)" formControlName='campus'>Campus Involvment</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='community'>Community Service</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(communityCategory)" formControlName='community'>Community Service</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='global'>Global Engagement</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(globalCategory)" formControlName='global'>Global Engagement</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='academic'>Academic Presentation</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(academicCategory)" formControlName='academic'>Academic Presentation</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='official'>University Official Committee</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(officialCategory)" formControlName='official'>University Official Committee</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='peer'>Peer Tutoring</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(peerCategory)" formControlName='peer'>Peer Tutoring</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='athletics'>Athletics</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(athleticsCategory)" formControlName='athletics'>Athletics</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='creative'>Publication/ Creative Activity</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(creativeCategory)" formControlName='creative'>Publication/ Creative Activity</mat-checkbox>
       </div>
       <div class="floating-box__row">
-        <mat-checkbox formControlName='award'>Award/Scholarship</mat-checkbox>
+        <mat-checkbox (click)="addSingleEntry(awardCategory)" formControlName='award'>Award/Scholarship</mat-checkbox>
       </div>
       <div class="floating-box__row checkbox">
-        <mat-checkbox formControlName='other' class="mat-checkbox--input">
-          <mat-form-field>
-            <input type="text" matInput placeholder="Other" formControlName="otherText">
-          </mat-form-field>
+        <mat-checkbox (click)="addSingleEntry(otherCategory)" formControlName='other'>
+            <mat-form-field>
+                <input (click)="$event.stopPropagation()" type="text" matInput placeholder="Other" formControlName="otherText">
+              </mat-form-field>
         </mat-checkbox>
       </div>
+
     </div>
 
     <div *ngIf="userForm.value.userCategories.leadership">
       <hut-leadership (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-leadership>
       <div class="floating-box__row extra">
         <button (click)="addEntry(leadershipCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.club">
+      <hut-club (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-club>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(clubCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+
+    <div *ngIf="userForm.value.userCategories.dev">
+      <hut-dev (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-dev>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(devCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.wellness">
+      <hut-wellness (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-wellness>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(wellnessCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.campus">
+      <hut-campus (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-campus>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(campusCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.community">
+      <hut-community (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-community>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(communityCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.global">
+      <hut-global (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-global>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(globalCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.academic">
+      <hut-academic (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-academic>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(academicCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.official">
+      <hut-official (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-official>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(officialCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.peer">
+      <hut-peer (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-peer>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(peerCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.athletics">
+      <hut-athletics (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-athletics>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(athleticsCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.creative">
+      <hut-creative (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-creative>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(creativeCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.award">
+      <hut-award (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-award>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(awardCategory)" type="button" mat-raised-button color="primary">
+          Add another entry
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="userForm.value.userCategories.other">
+      <hut-other (eventRemoved)="removeCurrentEvent($event)" [group]="userForm"></hut-other>
+      <div class="floating-box__row extra">
+        <button (click)="addEntry(otherCategory)" type="button" mat-raised-button color="primary">
           Add another entry
         </button>
       </div>

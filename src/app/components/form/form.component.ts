@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { FormResult } from '../../interfaces/formResult';
 import { map, startWith } from 'rxjs/operators';
 import { EventEntry, UserDetails, UserCategories } from '../../models/user-data';
 
@@ -16,6 +17,9 @@ export interface User {
 
 export class FormComponent implements OnInit {
   userForm: FormGroup;
+  formResultsLocal: any;
+  formResults: Array<FormResult> = [];
+  currentEntry: FormResult;
 
   userList: User[] = [
     { studentID: 'am02266' },
@@ -121,8 +125,8 @@ export class FormComponent implements OnInit {
     }
   }
 
-  removeCurrentEvent(index) {
-    this.leadershipCategory.removeAt(index);
+  removeCurrentEvent(event) {
+    event.category.removeAt(event.index);
   }
 
   userControl = new FormControl();
@@ -148,12 +152,44 @@ export class FormComponent implements OnInit {
     return this.userList.filter(option => option.studentID.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  submitForm(form) {
-    // Make sure to create a deep copy of the form-model
-    const result: UserDetails = Object.assign({}, this.userForm.value);
-    result.leadershipCategory = Object.assign({}, result.leadershipCategory);
+  submitForm() {
+    console.log(this.userForm.value.studentID);
+    console.log(this.userForm);
 
-    // Do useful stuff with the gathered data
-    console.log(result);
+    if (this.userForm.valid) {
+      // Make sure to create a deep copy of the form-model
+      const result: UserDetails = Object.assign({}, this.userForm.value);
+      result.leadershipCategory = Object.assign({}, result.leadershipCategory);
+
+      // Do useful stuff with the gathered data
+      this.currentEntry = {
+        firstName: this.userForm.value.firstName,
+        lastName: this.userForm.value.lastName,
+        studentID: this.userForm.value.studentID,
+        major: this.userForm.value.major,
+        categories: this.userForm.value.categories,
+        leadershipCategory: this.userForm.value.leadershipCategory,
+        clubCategory: this.userForm.value.clubCategory,
+        devCategory: this.userForm.value.devCategory,
+        wellnessCategory: this.userForm.value.wellnessCategory,
+        campusCategory: this.userForm.value.campusCategory,
+        communityCategory: this.userForm.value.communityCategory,
+        globalCategory: this.userForm.value.globalCategory,
+        academicCategory: this.userForm.value.academicCategory,
+        officialCategory: this.userForm.value.officialCategory,
+        peerCategory: this.userForm.value.peerCategory,
+        athleticsCategory: this.userForm.value.athleticsCategory,
+        creativeCategory: this.userForm.value.creativeCategory,
+        awardCategory: this.userForm.value.awardCategory,
+        otherCategory: this.userForm.value.otherCategory,
+        date: Date()
+      }
+
+      this.formResults.push(
+        this.currentEntry
+      )
+
+      localStorage.setItem('formResultsLocal', JSON.stringify(this.formResults));
+    }
   }
 }

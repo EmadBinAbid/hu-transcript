@@ -1,0 +1,45 @@
+<div [formGroup]="group">
+    <div class="form-category" formArrayName="wellnessCategory">
+      <h3>Student Wellness Services</h3>
+
+      <div class="form-category__entry" *ngFor="let entry of wellnessCategory.controls; let i=index" [formGroupName]="i">
+        <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+
+        <button type="button" mat-mini-fab color="warn" class="form-category__remove" *ngIf="wellnessCategory.controls.length > 1" (click)="removeEvent(i, wellnessCategory)">
+          <i class="fa fa-trash"></i>
+        </button>
+
+        <div class="floating-box__row">
+          <mat-form-field class="full-width">
+            <input type="text" matInput placeholder="Organization/ Program" required formControlName="title">
+          </mat-form-field>
+        </div>
+
+        <div class="floating-box__row">
+          <mat-form-field class="full-width">
+            <input type="text" matInput placeholder="Position" required formControlName="position">
+          </mat-form-field>
+        </div>
+
+        <div class="floating-box__row">
+          <mat-form-field class="full-width">
+            <input type="text" matInput placeholder="From" required formControlName="from">
+          </mat-form-field>
+        </div>
+
+        <div class="floating-box__row">
+          <mat-form-field class="full-width">
+            <input type="text" matInput placeholder="To" required formControlName="to">
+          </mat-form-field>
+        </div>
+
+        <div class="floating-box__row">
+          <p>Enter proof:</p>
+          <div class="form-category__file-button">
+            <button type="submit" mat-raised-button color="accent">Upload</button>
+            <input type="file" nameformControlName="file">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

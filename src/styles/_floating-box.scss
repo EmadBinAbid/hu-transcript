@@ -42,9 +42,8 @@
     }
 
     &.checkbox {
-
-        div {
-            display: none;
+        .mat-checkbox-inner-container-no-side-margin {
+            margin-right: 8px;
         }
     }
 }

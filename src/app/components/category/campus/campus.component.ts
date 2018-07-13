@@ -2,11 +2,11 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'hut-leadership',
-  templateUrl: './leadership.component.html',
-  styleUrls: ['./leadership.component.scss'],
+  selector: 'hut-campus',
+  templateUrl: './campus.component.html',
+  styleUrls: ['./campus.component.scss']
 })
-export class LeadershipComponent implements OnInit {
+export class CampusComponent implements OnInit {
   @Input() group: FormGroup;
   @Output() eventRemoved = new EventEmitter<any>();
 
@@ -21,8 +21,8 @@ export class LeadershipComponent implements OnInit {
     this.eventRemoved.emit(currentEntry);
   }
 
-  get leadershipCategory(): FormArray {
-    return this.group.get('leadershipCategory') as FormArray;
+  get campusCategory(): FormArray {
+    return this.group.get('campusCategory') as FormArray;
   };
 
   ngOnInit() {
