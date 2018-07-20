@@ -27,6 +27,7 @@ import { CreativeComponent } from './components/category/creative/creative.compo
 import { AwardComponent } from './components/category/award/award.component';
 import { OtherComponent } from './components/category/other/other.component';
 import { DetailsComponent } from './components/details/details.component';
+import { SupervisorComponent } from './components/supervisor/supervisor.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { DetailsComponent } from './components/details/details.component';
     AwardComponent,
     OtherComponent,
     DetailsComponent,
+    SupervisorComponent,
   ],
   imports: [
     BrowserModule,

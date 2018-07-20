@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { FormResult } from '../../interfaces/formResult';
 import { map, startWith } from 'rxjs/operators';
 import { EventEntry, UserDetails, UserCategories } from '../../models/user-data';
+import { FormService } from '../../services/form.service';
 
 export interface User {
   studentID: string;
@@ -28,7 +29,8 @@ export class FormComponent implements OnInit {
   ];
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private formService: FormService
   ) {
     this.userForm = this.createFormGroup(formBuilder);
     this.formResultsLocal = (localStorage.getItem('formSubmissionList') !== null) ? JSON.parse(localStorage.getItem('formSubmissionList')) : [];
@@ -187,12 +189,13 @@ export class FormComponent implements OnInit {
         date: Date()
       }
 
-      this.formResults.push(
-        this.currentEntry
-      )
+      // this.formResults.push(
+      //   this.currentEntry
+      // )
 
-      localStorage.setItem('formSubmissionList', JSON.stringify(this.formResults));
-      this.userForm.reset();
+      // localStorage.setItem('formSubmissionList', JSON.stringify(this.formResults));
+      this.formService.addForm(this.currentEntry);
+      // this.userForm.reset();
     }
   }
 }
