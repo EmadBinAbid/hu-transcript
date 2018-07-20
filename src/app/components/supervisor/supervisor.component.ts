@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormService } from '../../services/form.service';
 
 @Component({
   selector: 'hut-supervisor',
@@ -13,11 +14,14 @@ export class SupervisorComponent implements OnInit {
   dataSource: any;
 
   constructor(
-    public router: Router
+    public router: Router,
+    private formService: FormService
   ) 
   {
-    this.submissionList = (localStorage.getItem('formSubmissionList') !== null) ? JSON.parse(localStorage.getItem('formSubmissionList')) : [];
-    this.dataSource = this.submissionList;
+    this.formService.getAllForms()
+    .subscribe( (result) => {
+      this.dataSource = result["form"];
+    } );
   }
 
   ngOnInit() {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormResult } from '../interfaces/formResult';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,16 @@ export class FormService {
   {
     var headers = new HttpHeaders(
       {'Content-Type': 'application/json',
-      'Authorization': `${localStorage.getItem('todo-app_token')}`
+      'Authorization': `${localStorage.getItem('mct-app_token')}`
       }
+    );
+
+    return this.http.get('http://localhost:3000/form/all-forms', { headers })
+    .pipe(
+      tap( (response) => {
+        //Do something
+        
+      })
     );
   }
 }
