@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'hut-login',
@@ -12,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public router: Router,
+    private loginService: LoginService,
     private formBuilder: FormBuilder
   ) {
     this.loginForm = this.createFormGroup(formBuilder);
@@ -30,9 +32,14 @@ export class LoginComponent implements OnInit {
   submitForm() {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.value;
-      if (formValue.email === 'test@test.com' && formValue.password === 'pakistan') {
-        this.router.navigate(['/dashboard']);
-      }
+
+      this.loginService.login(formValue)
+      .subscribe( (result)  => {
+        if(result['user']['userType'] === 'supervisor')
+          this.router.navigate(['/supervisor']);
+        else if(result['user']['userType'] === 'administrator')
+          this.router.navigate(['/dashboard']);
+      });
     }
   }
 

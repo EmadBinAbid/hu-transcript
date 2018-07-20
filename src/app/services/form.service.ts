@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormResult } from '../interfaces/formResult';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +33,14 @@ export class FormService {
     });
     this.http.post('http://localhost:3000/form', requestObject)
     .subscribe( (result) => {} );
+  }
+
+  getAllForms()
+  {
+    var headers = new HttpHeaders(
+      {'Content-Type': 'application/json',
+      'Authorization': `${localStorage.getItem('todo-app_token')}`
+      }
+    );
   }
 }
