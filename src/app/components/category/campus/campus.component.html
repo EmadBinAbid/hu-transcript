@@ -37,7 +37,8 @@
           <p>Enter proof:</p>
           <div class="form-category__file-button">
             <button type="submit" mat-raised-button color="accent">Upload</button>
-            <input type="file" nameformControlName="file">
+            <input type="file" name="imageUpload" (change)="onFileChange($event, i, campusCategory)">
+            <input type="hidden" name="imageHidden" formControlName="image"/>
           </div>
         </div>
       </div>

@@ -22,11 +22,11 @@ export class UserDetails {
 }
 
 export class EventEntry {
-  title: Array<'string'> = [];
-  position: Array<'string'> = [];
-  from: Array<'string'> = [];
-  to: Array<'string'> = [];
-  image: Array<'string'> = [];
+  title: Array<String> = [];
+  position: Array<String> = [];
+  from: Array<String> = [];
+  to: Array<String> = [];
+  image: Array<Object> = [];
 }
 
 export class UserCategories {

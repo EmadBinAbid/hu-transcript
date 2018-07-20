@@ -12,6 +12,14 @@ export class AcademicComponent implements OnInit {
 
   constructor() { }
 
+  onFileChange(event, entryIndex, category) {
+    if(event.target.files && event.target.files.length) {
+      const file = event.target.files;
+      category.controls[entryIndex].controls['image'].setValue(file[0]);
+
+    }
+  }
+
   removeEvent(index, category) {
     const currentEntry = {
       index,
