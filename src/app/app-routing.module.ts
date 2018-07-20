@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FormComponent } from './components/form/form.component';
 import { DetailsComponent } from './components/details/details.component';
+import { SupervisorComponent } from './components/supervisor/supervisor.component';
 
 const routes: Routes = [{
   path: 'login',
@@ -16,6 +17,10 @@ const routes: Routes = [{
 {
   path: 'dashboard',
   component: DashboardComponent
+},
+{
+  path: 'supervisor',
+  component: SupervisorComponent
 },
 {
   path: 'details',
