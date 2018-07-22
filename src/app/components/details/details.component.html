@@ -34,6 +34,12 @@
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('leadershipCategory', i)">
         View Attachment
       </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true, 'leadershipCategory')">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false, 'leadershipCategory')">
+        Reject
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">HUSC Club/ Project:</div>
@@ -61,6 +67,12 @@
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('clubCategory', i)">
         View Attachment
+      </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
       </button>
       <div class="user-details">
         <div class="user-details__column">
@@ -90,6 +102,12 @@
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('devCategory', i)">
         View Attachment
       </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Organization/Dept:</div>
@@ -117,6 +135,12 @@
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('wellnessCategory', i)">
         View Attachment
+      </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
       </button>
       <div class="user-details">
         <div class="user-details__column">
@@ -146,6 +170,12 @@
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('campusCategory', i)">
         View Attachment
       </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Event/Program:</div>
@@ -173,6 +203,12 @@
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('communityCategory', i)">
         View Attachment
+      </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
       </button>
       <div class="user-details">
         <div class="user-details__column">
@@ -202,6 +238,12 @@
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('globalCategory', i)">
         View Attachment
       </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Program/Institution:</div>
@@ -229,6 +271,12 @@
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('academicCategory', i)">
         View Attachment
+      </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
       </button>
       <div class="user-details">
         <div class="user-details__column">
@@ -258,6 +306,12 @@
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('officialCategory', i)">
         View Attachment
       </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Committee:</div>
@@ -286,6 +340,12 @@
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('peerCategory', i)">
         View Attachment
       </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Course:</div>
@@ -309,6 +369,12 @@
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('athleticsCategory', i)">
         View Attachment
+      </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
       </button>
       <div class="user-details">
         <div class="user-details__column">
@@ -338,6 +404,12 @@
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('creativeCategory', i)">
         View Attachment
       </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Credentials:</div>
@@ -366,6 +438,12 @@
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('awardCategory', i)">
         View Attachment
       </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Award:</div>
@@ -389,6 +467,12 @@
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
       <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('otherCategory', i)">
         View Attachment
+      </button>
+      <button mat-raised-button class="green" style="float: right;" (click)="changeApprovedStatus(true)">
+        Approve
+      </button>
+      <button mat-raised-button class="red" style="float: right;" (click)="changeApprovedStatus(false)">
+        Reject
       </button>
       <div class="user-details">
         <div class="user-details__column">

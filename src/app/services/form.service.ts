@@ -88,5 +88,20 @@ export class FormService {
     );
   }*/
 
-  
+  changeApprovedStatus(isApproved, requestBody)
+  {
+    var headers = new HttpHeaders(
+      {'Content-Type': 'application/json',
+      'Authorization': `${localStorage.getItem('mct-app_token')}`
+      }
+    );
+
+    return this.http.put('http://localhost:3000/form/supervisor', { "form": requestBody }, { headers })
+    .pipe(
+      tap( (response) => {
+        //Do something
+        
+      })
+    );
+  }
 }
