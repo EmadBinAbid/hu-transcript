@@ -1,7 +1,7 @@
 <mat-card class="floating-box wide">
   <div class="floating-box__header">
     <h1>Submission Details</h1>
-    <a routerLink='/dashboard'>
+    <a routerLink='/supervisor'>
       <button mat-stroked-button color="primary">
         <i class="fa fa-angle-left"></i>
         Return to List
@@ -27,10 +27,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.leadershipCategory.length">
+  <div *ngIf="currentFormItem.leadershipCategory">
     <h3>Student Leadership</h3>
     <div *ngFor="let item of currentFormItem.leadershipCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('leadershipCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">HUSC Club/ Project:</div>
@@ -52,10 +55,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.clubCategory.length">
+  <div *ngIf="currentFormItem.clubCategory">
     <h3>HU Club/Organization/Society</h3>
     <div *ngFor="let item of currentFormItem.clubCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('clubCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Project/Thesis:</div>
@@ -77,10 +83,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.devCategory.length">
+  <div *ngIf="currentFormItem.devCategory">
     <h3>Career Development</h3>
     <div *ngFor="let item of currentFormItem.devCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('devCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Organization/Dept:</div>
@@ -102,10 +111,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.wellnessCategory.length">
+  <div *ngIf="currentFormItem.wellnessCategory">
     <h3>Student Wellness Services</h3>
     <div *ngFor="let item of currentFormItem.wellnessCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('wellnessCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Organization/ Program:</div>
@@ -127,10 +139,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.campusCategory.length">
+  <div *ngIf="currentFormItem.campusCategory">
     <h3>Campus Involvement</h3>
     <div *ngFor="let item of currentFormItem.campusCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('campusCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Event/Program:</div>
@@ -152,10 +167,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.communityCategory.length">
+  <div *ngIf="currentFormItem.communityCategory">
     <h3>Community Service</h3>
     <div *ngFor="let item of currentFormItem.communityCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('communityCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Project/Thesis:</div>
@@ -177,10 +195,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.globalCategory.length">
+  <div *ngIf="currentFormItem.globalCategory">
     <h3>Global Engagement</h3>
     <div *ngFor="let item of currentFormItem.globalCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('globalCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Program/Institution:</div>
@@ -202,10 +223,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.academicCategory.length">
+  <div *ngIf="currentFormItem.academicCategory">
     <h3>Academic Presentation</h3>
     <div *ngFor="let item of currentFormItem.academicCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('academicCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Conference/Presentation:</div>
@@ -227,10 +251,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.officialCategory.length">
+  <div *ngIf="currentFormItem.officialCategory">
     <h3>University Official Committee</h3>
     <div *ngFor="let item of currentFormItem.officialCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('officialCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Committee:</div>
@@ -252,10 +279,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.peerCategory.length">
+  <div *ngIf="currentFormItem.peerCategory">
     <h3>Peer Tutoring</h3>
     <div *ngFor="let item of currentFormItem.peerCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('peerCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Course:</div>
@@ -273,10 +303,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.athleticsCategory.length">
+  <div *ngIf="currentFormItem.athleticsCategory">
     <h3>Athletics</h3>
     <div *ngFor="let item of currentFormItem.athleticsCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('athleticsCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Team/Competition:</div>
@@ -298,10 +331,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.creativeCategory.length">
+  <div *ngIf="currentFormItem.creativeCategory">
     <h3>Publications/Creative Activity</h3>
     <div *ngFor="let item of currentFormItem.creativeCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('creativeCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Credentials:</div>
@@ -323,10 +359,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.awardCategory.length">
+  <div *ngIf="currentFormItem.awardCategory">
     <h3>Award/Scholarship</h3>
     <div *ngFor="let item of currentFormItem.awardCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('awardCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Award:</div>
@@ -344,10 +383,13 @@
     </div>
   </div>
 
-  <div *ngIf="currentFormItem.otherCategory.length">
+  <div *ngIf="currentFormItem.otherCategory">
     <h3>Other</h3>
     <div *ngFor="let item of currentFormItem.otherCategory; let i=index" class="form-category__entry">
       <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('otherCategory', i)">
+        View Attachment
+      </button>
       <div class="user-details">
         <div class="user-details__column">
           <div class="user-details__label">Event/Program Name:</div>

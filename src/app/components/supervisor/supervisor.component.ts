@@ -18,19 +18,21 @@ export class SupervisorComponent implements OnInit {
     private formService: FormService
   ) 
   {
-    this.formService.getAllForms()
+    this.formService.getFormCategoriesBySupervisorId()
     .subscribe( (result) => {
-      this.dataSource = result["form"];
+      this.dataSource = result;
+      console.log(result);
     } );
   }
 
   ngOnInit() {
   }
 
-  storeItem(currentItem)
+  viewDetails(currentItem)
   {
-    localStorage.setItem('currentFormItem', JSON.stringify(currentItem));
+    localStorage.setItem('supervisor_currentFormItem', JSON.stringify(currentItem));
     this.router.navigate(['/details']);
-  }
 
+    //console.log(currentItem)
+  }
 }

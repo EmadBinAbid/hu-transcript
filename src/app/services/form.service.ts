@@ -52,4 +52,41 @@ export class FormService {
       })
     );
   }
+
+  getFormCategoriesBySupervisorId()
+  {
+    var headers = new HttpHeaders(
+      {'Content-Type': 'application/json',
+      'Authorization': `${localStorage.getItem('mct-app_token')}`
+      }
+    );
+
+    return this.http.get('http://localhost:3000/form/categories', { headers })
+    .pipe(
+      tap( (response) => {
+        //Do something
+        
+      })
+    );
+  }
+
+  /*viewUploadByStudentId(studentID: String, filename: String)
+  {
+    var headers = new HttpHeaders(
+      {'Content-Type': 'application/json',
+      'Authorization': `${localStorage.getItem('mct-app_token')}`
+      }
+    );
+
+    console.log(studentID + '--' + filename);
+    return this.http.get(`http://localhost:3000/form/upload/download?studentID=${studentID}&filename=${filename}`, { headers })
+    .pipe(
+      tap( (response) => {
+        console.log(response);
+        
+      })
+    );
+  }*/
+
+  
 }
