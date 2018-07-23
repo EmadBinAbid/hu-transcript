@@ -5,30 +5,53 @@
     <div class="floating-box__row">
       <mat-form-field class="full-width">
         <input type="text" matInput placeholder="First name" required formControlName="firstName">
+        <label style="font-size: 12px; font-style: italic;">E.g.: Emad</label>
       </mat-form-field>
     </div>
 
     <div class="floating-box__row">
       <mat-form-field class="full-width">
         <input type="text" matInput placeholder="Last name" required formControlName="lastName">
+        <label style="font-size: 12px; font-style: italic;">E.g.: Bin Abid</label>
       </mat-form-field>
     </div>
 
     <div class="floating-box__row">
       <mat-form-field class="full-width">
-        <input type="text" placeholder="Student ID" matInput [matAutocomplete]="auto" [formControl]="userControl" formControlName="studentID">
+        <input type="text" matInput placeholder="Student ID" required formControlName="studentID">
+        <label style="font-size: 12px; font-style: italic;">E.g.: ea02893</label>
+      </mat-form-field>
+      <!-- <mat-form-field class="full-width">
+        <input type="text" placeholder="Student ID" required matInput [matAutocomplete]="auto" [formControl]="userControl" formControlName="studentID">
+        <label style="font-size: 12px; font-style: italic;">E.g.: ea02893</label>
       </mat-form-field>
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.studentID">
+        <mat-option *ngFor="let option of studentIDFilteredOptions | async" [value]="option.studentID">
           {{option.studentID}}
+        </mat-option>
+      </mat-autocomplete> -->
+    </div>
+
+    <div class="floating-box__row">
+      <mat-form-field class="full-width">
+        <input type="text" placeholder="School" required matInput [matAutocomplete]="auto" [formControl]="schoolControl" formControlName="school">
+      </mat-form-field>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of schoolFilteredOptions | async" [value]="option.school">
+          {{option.school}}
         </mat-option>
       </mat-autocomplete>
     </div>
 
     <div class="floating-box__row">
       <mat-form-field class="full-width">
-        <input type="text" matInput placeholder="Major" required formControlName="major">
+        <input type="text" placeholder="Major" required matInput [matAutocomplete]="auto" [formControl]="majorControl" formControlName="major">
       </mat-form-field>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of majorFilteredOptions | async" [value]="option.major">
+          {{option.major}}
+        </mat-option>
+      </mat-autocomplete>
     </div>
 
     <div class="floating-box__row" formGroupName="userCategories">

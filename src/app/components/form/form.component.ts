@@ -10,6 +10,14 @@ export interface User {
   studentID: string;
 }
 
+export interface School {
+  school: string;
+}
+
+export interface Major {
+  major: string;
+}
+
 @Component({
   selector: 'hut-form',
   templateUrl: './form.component.html',
@@ -22,10 +30,22 @@ export class FormComponent implements OnInit {
   formResults: Array<FormResult> = [];
   currentEntry: FormResult;
 
-  userList: User[] = [
-    { studentID: 'am02266' },
-    { studentID: 'am02277' },
-    { studentID: 'sh21741' }
+  // userList: User[] = [
+  //   { studentID: 'am02266' },
+  //   { studentID: 'am02277' },
+  //   { studentID: 'sh21741' }
+  // ];
+
+  schoolList: School[] = [
+    { school: "Dhanani's School of Science & Engineering (DSSE)" },
+    { school: "School of Arts, Humanities & Social Sciences (AHSS)" }
+  ];
+
+  majorList: Major[] = [
+    { major: "Computer Science" },
+    { major: "Electrical Engineering" },
+    { major: "Social Development & Policy" },
+    { major: "Communication & Design" }
   ];
 
   constructor(
@@ -47,6 +67,7 @@ export class FormComponent implements OnInit {
       firstName: new FormControl(),
       lastName: new FormControl(),
       studentID: new FormControl(),
+      school: new FormControl(),
       major: new FormControl(),
       userCategories: formBuilder.group(new UserCategories),
       leadershipCategory: this.formBuilder.array([]),
@@ -138,27 +159,59 @@ export class FormComponent implements OnInit {
     event.category.removeAt(event.index);
   }
 
-  userControl = new FormControl();
+  // userControl = new FormControl();
+  schoolControl = new FormControl();
+  majorControl = new FormControl();
 
-  filteredOptions: Observable<User[]>;
+  // studentIDFilteredOptions: Observable<User[]>;
+  schoolFilteredOptions: Observable<School[]>;
+  majorFilteredOptions: Observable<Major[]>;
 
   ngOnInit() {
-    this.filteredOptions = this.userControl.valueChanges
+    // this.studentIDFilteredOptions = this.userControl.valueChanges
+    //   .pipe(
+    //     startWith<string | User>(''),
+    //     map(value => typeof value === 'string' ? value : value.studentID),
+    //     map(studentID => studentID ? this._filterUser(studentID) : this.userList.slice())
+    //   );
+
+    this.schoolFilteredOptions = this.schoolControl.valueChanges
       .pipe(
-        startWith<string | User>(''),
-        map(value => typeof value === 'string' ? value : value.studentID),
-        map(studentID => studentID ? this._filter(studentID) : this.userList.slice())
+        startWith<string | School>(''),
+        map(value => typeof value === 'string' ? value : value.school),
+        map(school => school ? this._filterSchool(school) : this.schoolList.slice())
+      );
+
+    this.majorFilteredOptions = this.majorControl.valueChanges
+      .pipe(
+        startWith<string | Major>(''),
+        map(value => typeof value === 'string' ? value : value.major),
+        map(major => major ? this._filterMajor(major) : this.majorList.slice())
       );
   }
 
-  private _filter(studentID: string): User[] {
-    const filterValue = studentID.toLowerCase();
+  // private _filterUser(studentID: string): User[] {
+  //   const filterValue = studentID.toLowerCase();
 
-    return this.userList.filter(option => option.studentID.toLowerCase().indexOf(filterValue) === 0);
+  //   return this.userList.filter(option => option.studentID.toLowerCase().indexOf(filterValue) === 0);
+  // }
+
+  private _filterSchool(school: string): School[] {
+    const filterValue = school.toLowerCase();
+
+    return this.schoolList.filter(option => option.school.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterMajor(major: string): Major[] {
+    const filterValue = major.toLowerCase();
+
+    return this.majorList.filter(option => option.major.toLowerCase().indexOf(filterValue) === 0);
   }
 
   submitForm() {
-    this.userForm.value.studentID = this.userControl.value;
+    // this.userForm.value.studentID = this.userControl.value;
+    this.userForm.value.school = this.schoolControl.value;
+    this.userForm.value.major = this.majorControl.value;
 
     if (this.userForm.valid) {
       // Make sure to create a deep copy of the form-model
@@ -170,6 +223,7 @@ export class FormComponent implements OnInit {
         firstName: this.userForm.value.firstName,
         lastName: this.userForm.value.lastName,
         studentID: this.userForm.value.studentID,
+        school: this.userForm.value.school,
         major: this.userForm.value.major,
         categories: this.userForm.value.categories,
         leadershipCategory: this.userForm.value.leadershipCategory,
