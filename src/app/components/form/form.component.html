@@ -45,9 +45,9 @@
 
     <div class="floating-box__row">
       <mat-form-field class="full-width">
-        <input type="text" placeholder="Major" required matInput [matAutocomplete]="auto" [formControl]="majorControl" formControlName="major">
+        <input type="text" placeholder="Major" required matInput [matAutocomplete]="auto2" [formControl]="majorControl" formControlName="major">
       </mat-form-field>
-      <mat-autocomplete #auto="matAutocomplete">
+      <mat-autocomplete #auto2="matAutocomplete">
         <mat-option *ngFor="let option of majorFilteredOptions | async" [value]="option.major">
           {{option.major}}
         </mat-option>
