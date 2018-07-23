@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormService } from '../../services/form.service';
 
 @Component({
   selector: 'hut-supervisor',
@@ -13,20 +14,25 @@ export class SupervisorComponent implements OnInit {
   dataSource: any;
 
   constructor(
-    public router: Router
+    public router: Router,
+    private formService: FormService
   ) 
   {
-    this.submissionList = (localStorage.getItem('formSubmissionList') !== null) ? JSON.parse(localStorage.getItem('formSubmissionList')) : [];
-    this.dataSource = this.submissionList;
+    this.formService.getFormCategoriesBySupervisorId()
+    .subscribe( (result) => {
+      this.dataSource = result;
+      console.log(result);
+    } );
   }
 
   ngOnInit() {
   }
 
-  storeItem(currentItem)
+  viewDetails(currentItem)
   {
-    localStorage.setItem('currentFormItem', JSON.stringify(currentItem));
+    localStorage.setItem('supervisor_currentFormItem', JSON.stringify(currentItem));
     this.router.navigate(['/details']);
-  }
 
+    //console.log(currentItem)
+  }
 }

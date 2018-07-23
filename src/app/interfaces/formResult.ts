@@ -2,6 +2,7 @@ export interface FormResult {
     firstName: string,
     lastName: string,
     studentID: string,
+    school: string,
     major: string,
     categories: Array<String>,
     leadershipCategory: Array<Object>,

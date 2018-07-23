@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FormComponent } from './components/form/form.component';
 import { DetailsComponent } from './components/details/details.component';
 import { SupervisorComponent } from './components/supervisor/supervisor.component';
+import { AdminDetailsComponent } from './components/admin-details/admin-details.component';
 
 const routes: Routes = [{
   path: 'login',
@@ -25,6 +26,10 @@ const routes: Routes = [{
 {
   path: 'details',
   component: DetailsComponent
+},
+{
+  path: 'adminDetails',
+  component: AdminDetailsComponent
 },
 {
   path: '**',

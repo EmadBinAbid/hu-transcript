@@ -28,6 +28,7 @@ import { AwardComponent } from './components/category/award/award.component';
 import { OtherComponent } from './components/category/other/other.component';
 import { DetailsComponent } from './components/details/details.component';
 import { SupervisorComponent } from './components/supervisor/supervisor.component';
+import { AdminDetailsComponent } from './components/admin-details/admin-details.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { SupervisorComponent } from './components/supervisor/supervisor.componen
     OtherComponent,
     DetailsComponent,
     SupervisorComponent,
+    AdminDetailsComponent,
   ],
   imports: [
     BrowserModule,
