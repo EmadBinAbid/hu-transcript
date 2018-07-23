@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormService } from '../../services/form.service';
 
 export interface PeriodicElement {
   name: string;
@@ -20,18 +21,20 @@ export class DashboardComponent implements OnInit {
   dataSource: any;
 
   constructor(
-    public router: Router
+    public router: Router,
+    private formService: FormService
   ) {
-    this.submissionList = (localStorage.getItem('formSubmissionList') !== null) ? JSON.parse(localStorage.getItem('formSubmissionList')) : [];
-    this.dataSource = this.submissionList;
-  }
-
-  storeItem(currentItem) {
-    localStorage.setItem('currentFormItem', JSON.stringify(currentItem));
-    this.router.navigate(['/details']);
+    this.formService.getAllForms()
+    .subscribe((result) => {
+      this.dataSource = result["form"];  
+    });
   }
 
   ngOnInit() {
   }
 
+  viewDetails(currentItem) {
+    localStorage.setItem('administrator_currentFormItem', JSON.stringify(currentItem));
+    this.router.navigate(['/adminDetails']);
+  }
 }
