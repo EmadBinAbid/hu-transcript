@@ -1,3 +1,486 @@
-<p>
-  admin-details works!
-</p>
+<mat-card class="floating-box wide">
+  <div class="floating-box__header">
+    <h1>Submission Details</h1>
+    <a routerLink='/supervisor'>
+      <button mat-stroked-button color="primary">
+        <i class="fa fa-angle-left"></i>
+        Return to List
+      </button>
+    </a>
+  </div>
+  <button mat-raised-button color="primary" style="float: right;">
+    View Transcript
+  </button>
+  <div class="user-details">
+    <div class="user-details__column">
+      <div class="user-details__label">First Name:</div>
+      <div class="user-details__value">{{currentFormItem.firstName}}</div>
+    </div>
+    <div class="user-details__column">
+      <div class="user-details__label">Last Name:</div>
+      <div class="user-details__value">{{currentFormItem.lastName}}</div>
+    </div>
+    <div class="user-details__column">
+      <div class="user-details__label">Student ID:</div>
+      <div class="user-details__value">{{currentFormItem.studentID}}</div>
+    </div>
+    <div class="user-details__column">
+      <div class="user-details__label">Major:</div>
+      <div class="user-details__value">{{currentFormItem.major}}</div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.leadershipCategory">
+    <h3>Student Leadership</h3>
+    <div *ngFor="let item of currentFormItem.leadershipCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('leadershipCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">HUSC Club/ Project:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Position:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.clubCategory">
+    <h3>HU Club/Organization/Society</h3>
+    <div *ngFor="let item of currentFormItem.clubCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('clubCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Project/Thesis:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Description:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.devCategory">
+    <h3>Career Development</h3>
+    <div *ngFor="let item of currentFormItem.devCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('devCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Organization/Dept:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Role:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.wellnessCategory">
+    <h3>Student Wellness Services</h3>
+    <div *ngFor="let item of currentFormItem.wellnessCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('wellnessCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Organization/ Program:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Role:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.campusCategory">
+    <h3>Campus Involvement</h3>
+    <div *ngFor="let item of currentFormItem.campusCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('campusCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Event/Program:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Achievement/Role:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.communityCategory">
+    <h3>Community Service</h3>
+    <div *ngFor="let item of currentFormItem.communityCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('communityCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Project/Thesis:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Description:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.globalCategory">
+    <h3>Global Engagement</h3>
+    <div *ngFor="let item of currentFormItem.globalCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('globalCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Program/Institution:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Role:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.academicCategory">
+    <h3>Academic Presentation</h3>
+    <div *ngFor="let item of currentFormItem.academicCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('academicCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Conference/Presentation:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Position:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.officialCategory">
+    <h3>University Official Committee</h3>
+    <div *ngFor="let item of currentFormItem.officialCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('officialCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Committee:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Position:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.peerCategory">
+    <h3>Peer Tutoring</h3>
+    <div *ngFor="let item of currentFormItem.peerCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('peerCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Course:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.athleticsCategory">
+    <h3>Athletics</h3>
+    <div *ngFor="let item of currentFormItem.athleticsCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('athleticsCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Team/Competition:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Role/Achievement:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.creativeCategory">
+    <h3>Publications/Creative Activity</h3>
+    <div *ngFor="let item of currentFormItem.creativeCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('creativeCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Credentials:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Role/Achievement:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.awardCategory">
+    <h3>Award/Scholarship</h3>
+    <div *ngFor="let item of currentFormItem.awardCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('awardCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Award:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentFormItem.otherCategory">
+    <h3>Other</h3>
+    <div *ngFor="let item of currentFormItem.otherCategory; let i=index" class="form-category__entry">
+      <h4 class="form-category__heading">Entry #{{i + 1}}</h4>
+      <button mat-raised-button color="primary" style="float: right;" (click)="viewAttachment('otherCategory', i)">
+        View Attachment
+      </button>
+      <h4 class="isApprovedStatus">
+        <div *ngIf="item.isApproved===null" style="color: yellow;">Pending</div>
+        <div *ngIf="item.isApproved===true" style="color: green;">Approved</div>
+        <div *ngIf="item.isApproved===false" style="color: red;">Rejected</div>
+      </h4>
+      <div class="user-details">
+        <div class="user-details__column">
+          <div class="user-details__label">Event/Program Name:</div>
+          <div class="user-details__value">{{item.title}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">Role/Achievement:</div>
+          <div class="user-details__value">{{item.position}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">From:</div>
+          <div class="user-details__value">{{item.from}}</div>
+        </div>
+        <div class="user-details__column">
+          <div class="user-details__label">To:</div>
+          <div class="user-details__value">{{item.to}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

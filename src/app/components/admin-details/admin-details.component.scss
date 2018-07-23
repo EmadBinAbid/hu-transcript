@@ -1,0 +1,41 @@
+.user-details {
+    display: flex;
+    flex-wrap:  wrap;
+}
+
+.user-details__column {
+    display: flex;
+    flex: 0 0 50%;
+    margin: 10px 0;
+}
+
+.user-details__label {
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+h3 {
+    margin-top: 3em;
+}
+
+.red
+{
+    background: red;
+    color: white;
+}
+
+.green
+{
+    background: green;
+    color: white;
+}
+
+.isApprovedStatus {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 15px;
+    border-radius: 3px;
+    margin: 10px 5px;
+    font-size: 14px;
+    color: #fff;
+}
