@@ -6,9 +6,9 @@ import { map, startWith } from 'rxjs/operators';
 import { EventEntry, UserDetails, UserCategories } from '../../models/user-data';
 import { FormService } from '../../services/form.service';
 
-export interface User {
-  studentID: string;
-}
+// export interface User {
+//   studentID: string;
+// }
 
 export interface School {
   school: string;
@@ -212,6 +212,9 @@ export class FormComponent implements OnInit {
     // this.userForm.value.studentID = this.userControl.value;
     this.userForm.value.school = this.schoolControl.value;
     this.userForm.value.major = this.majorControl.value;
+
+    console.log(this.userForm.value);
+    console.log(this.userForm.valid);
 
     if (this.userForm.valid) {
       // Make sure to create a deep copy of the form-model

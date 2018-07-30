@@ -14,6 +14,7 @@ export class FormService {
 
   addForm(currentEntry: FormResult)
   {
+    // console.log("addForm()");
     const requestObject = new FormData();
     
     Object.keys(currentEntry).forEach(function(key)
