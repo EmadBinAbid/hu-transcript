@@ -34,9 +34,9 @@
 
     <div class="floating-box__row">
       <mat-form-field class="full-width">
-        <input type="text" placeholder="School" required matInput [matAutocomplete]="auto" [formControl]="schoolControl" formControlName="school">
+        <input type="text" placeholder="School" required matInput [matAutocomplete]="autoSchool" [formControl]="schoolControl" formControlName="school">
       </mat-form-field>
-      <mat-autocomplete #auto="matAutocomplete">
+      <mat-autocomplete #autoSchool="matAutocomplete">
         <mat-option *ngFor="let option of schoolFilteredOptions | async" [value]="option.school">
           {{option.school}}
         </mat-option>
@@ -45,9 +45,9 @@
 
     <div class="floating-box__row">
       <mat-form-field class="full-width">
-        <input type="text" placeholder="Major" required matInput [matAutocomplete]="auto2" [formControl]="majorControl" formControlName="major">
+        <input type="text" placeholder="Major" required matInput [matAutocomplete]="autoMajor" [formControl]="majorControl" formControlName="major">
       </mat-form-field>
-      <mat-autocomplete #auto2="matAutocomplete">
+      <mat-autocomplete #autoMajor="matAutocomplete">
         <mat-option *ngFor="let option of majorFilteredOptions | async" [value]="option.major">
           {{option.major}}
         </mat-option>
