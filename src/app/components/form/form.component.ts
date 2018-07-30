@@ -210,8 +210,8 @@ export class FormComponent implements OnInit {
 
   submitForm() {
     // this.userForm.value.studentID = this.userControl.value;
-    this.userForm.value.school = this.schoolControl.value;
-    this.userForm.value.major = this.majorControl.value;
+    this.userForm.controls["school"].setValue(this.schoolControl.value);
+    this.userForm.controls["major"].setValue(this.majorControl.value);
 
     console.log(this.userForm.value);
     console.log(this.userForm.valid);
