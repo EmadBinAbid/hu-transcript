@@ -9,9 +9,9 @@
           <i class="fa fa-trash"></i>
         </button>
 
-        <div class="floating-box__row">
+        <!-- <div class="floating-box__row">
           <mat-form-field class="full-width">
-            <input type="text" matInput placeholder="Event//Program" required formControlName="title">
+            <input type="text" matInput placeholder="Event/Program" required formControlName="title">
           </mat-form-field>
         </div>
 
@@ -19,7 +19,32 @@
           <mat-form-field class="full-width">
             <input type="text" matInput placeholder="Achievement/Role" required formControlName="position">
           </mat-form-field>
-        </div>
+        </div> -->
+
+        <div class="floating-box__row">
+            <mat-form-field class="full-width">
+              <input type="text" placeholder="Event/Program" required matInput [matAutocomplete]="autoTitle"
+                [formControl]="titleControl" formControlName="title" 
+                (blur)="onTitleChange($event, i, campusCategory)">
+            </mat-form-field>
+            <mat-autocomplete #autoTitle="matAutocomplete">
+              <mat-option *ngFor="let option of titleFilteredOptions | async" [value]="option.title">
+                {{option.title}}
+              </mat-option>
+            </mat-autocomplete>
+          </div>
+    
+          <div class="floating-box__row">
+            <mat-form-field class="full-width">
+              <input type="text" placeholder="Achievement/Role" required matInput [matAutocomplete]="autoPosition" [formControl]="positionControl"
+                formControlName="position" (blur)="onPositionChange($event, i, campusCategory)">
+            </mat-form-field>
+            <mat-autocomplete #autoPosition="matAutocomplete">
+              <mat-option *ngFor="let option of positionFilteredOptions | async" [value]="option.position">
+                {{option.position}}
+              </mat-option>
+            </mat-autocomplete>
+          </div>
 
         <div class="floating-box__row">
           <mat-form-field class="full-width">

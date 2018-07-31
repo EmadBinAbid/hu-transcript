@@ -9,11 +9,24 @@
           <i class="fa fa-trash"></i>
         </button>
 
-        <div class="floating-box__row">
+        <!-- <div class="floating-box__row">
           <mat-form-field class="full-width">
             <input type="text" matInput placeholder="Award" required formControlName="title">
           </mat-form-field>
-        </div>
+        </div> -->
+
+        <div class="floating-box__row">
+            <mat-form-field class="full-width">
+              <input type="text" placeholder="Award" required matInput [matAutocomplete]="autoTitle"
+                [formControl]="titleControl" formControlName="title" 
+                (blur)="onTitleChange($event, i, awardCategory)">
+            </mat-form-field>
+            <mat-autocomplete #autoTitle="matAutocomplete">
+              <mat-option *ngFor="let option of titleFilteredOptions | async" [value]="option.title">
+                {{option.title}}
+              </mat-option>
+            </mat-autocomplete>
+          </div>
 
         <div class="floating-box__row">
           <mat-form-field class="full-width">

@@ -2,21 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { FormResult } from '../../interfaces/formResult';
+import * as FormField from '../../interfaces/formFields';
 import { map, startWith } from 'rxjs/operators';
 import { EventEntry, UserDetails, UserCategories } from '../../models/user-data';
 import { FormService } from '../../services/form.service';
-
-// export interface User {
-//   studentID: string;
-// }
-
-export interface School {
-  school: string;
-}
-
-export interface Major {
-  major: string;
-}
 
 @Component({
   selector: 'hut-form',
@@ -30,18 +19,12 @@ export class FormComponent implements OnInit {
   formResults: Array<FormResult> = [];
   currentEntry: FormResult;
 
-  // userList: User[] = [
-  //   { studentID: 'am02266' },
-  //   { studentID: 'am02277' },
-  //   { studentID: 'sh21741' }
-  // ];
-
-  schoolList: School[] = [
+  schoolList: FormField.School[] = [
     { school: "Dhanani's School of Science & Engineering (DSSE)" },
     { school: "School of Arts, Humanities & Social Sciences (AHSS)" }
   ];
 
-  majorList: Major[] = [
+  majorList: FormField.Major[] = [
     { major: "Computer Science" },
     { major: "Electrical Engineering" },
     { major: "Social Development & Policy" },
@@ -159,60 +142,45 @@ export class FormComponent implements OnInit {
     event.category.removeAt(event.index);
   }
 
-  // userControl = new FormControl();
   schoolControl = new FormControl();
   majorControl = new FormControl();
 
-  // studentIDFilteredOptions: Observable<User[]>;
-  schoolFilteredOptions: Observable<School[]>;
-  majorFilteredOptions: Observable<Major[]>;
+  schoolFilteredOptions: Observable<FormField.School[]>;
+  majorFilteredOptions: Observable<FormField.Major[]>;
 
   ngOnInit() {
-    // this.studentIDFilteredOptions = this.userControl.valueChanges
-    //   .pipe(
-    //     startWith<string | User>(''),
-    //     map(value => typeof value === 'string' ? value : value.studentID),
-    //     map(studentID => studentID ? this._filterUser(studentID) : this.userList.slice())
-    //   );
-
     this.schoolFilteredOptions = this.schoolControl.valueChanges
       .pipe(
-        startWith<string | School>(''),
+        startWith<string | FormField.School>(''),
         map(value => typeof value === 'string' ? value : value.school),
         map(school => school ? this._filterSchool(school) : this.schoolList.slice())
       );
 
     this.majorFilteredOptions = this.majorControl.valueChanges
       .pipe(
-        startWith<string | Major>(''),
+        startWith<string | FormField.Major>(''),
         map(value => typeof value === 'string' ? value : value.major),
         map(major => major ? this._filterMajor(major) : this.majorList.slice())
       );
   }
 
-  // private _filterUser(studentID: string): User[] {
-  //   const filterValue = studentID.toLowerCase();
-
-  //   return this.userList.filter(option => option.studentID.toLowerCase().indexOf(filterValue) === 0);
-  // }
-
-  private _filterSchool(school: string): School[] {
+  private _filterSchool(school: string): FormField.School[] {
     const filterValue = school.toLowerCase();
 
     return this.schoolList.filter(option => option.school.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  private _filterMajor(major: string): Major[] {
+  private _filterMajor(major: string): FormField.Major[] {
     const filterValue = major.toLowerCase();
 
     return this.majorList.filter(option => option.major.toLowerCase().indexOf(filterValue) === 0);
   }
 
   submitForm() {
-    // this.userForm.value.studentID = this.userControl.value;
     this.userForm.controls["school"].setValue(this.schoolControl.value);
     this.userForm.controls["major"].setValue(this.majorControl.value);
-
+    
+    console.log(this.userForm.status);
     console.log(this.userForm.value);
     console.log(this.userForm.valid);
 
@@ -246,11 +214,6 @@ export class FormComponent implements OnInit {
         date: Date()
       }
 
-      // this.formResults.push(
-      //   this.currentEntry
-      // )
-
-      // localStorage.setItem('formSubmissionList', JSON.stringify(this.formResults));
       this.formService.addForm(this.currentEntry);
       // this.userForm.reset();
     }
