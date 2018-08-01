@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
-    if (this.loginForm.valid) {
+    if (this.loginForm.valid) 
+    {
       const formValue = this.loginForm.value;
 
       this.loginService.login(formValue)
@@ -39,8 +40,13 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/supervisor']);
         else if(result['user']['userType'] === 'administrator')
           this.router.navigate(['/dashboard']);
+      }, (err) => {
+        if(err.statusText === "Unauthorized")
+          alert("Invalid email or password.");
       });
     }
+    else
+      alert("Please fill in the required fields.");
   }
 
 }

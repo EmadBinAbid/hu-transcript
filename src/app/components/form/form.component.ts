@@ -214,8 +214,19 @@ export class FormComponent implements OnInit {
         date: Date()
       }
 
-      this.formService.addForm(this.currentEntry);
-      // this.userForm.reset();
+      this.formService.addForm(this.currentEntry)
+      .subscribe( (result) => {
+        alert("Your form has been submitted successfully.");
+        this.userForm.reset();
+      },
+      (err) => {
+        if(err.statusText === "Unauthorized")
+          alert("The form with given StudentID is already submitted.");
+        if(err.statusText === "Bad Request")
+          alert("Error Code: 400 -> Bad Request");
+      });
     }
+    else
+      alert("Please fill in the required fields.");
   }
 }

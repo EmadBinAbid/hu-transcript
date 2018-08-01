@@ -34,8 +34,7 @@ export class FormService {
         }
       }
     });
-    this.http.post('http://localhost:3000/form', requestObject)
-    .subscribe( (result) => {} );
+    return this.http.post('http://localhost:3000/form', requestObject);
   }
 
   getAllForms()
