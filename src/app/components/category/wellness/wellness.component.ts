@@ -50,19 +50,12 @@ export class WellnessComponent implements OnInit {
   }
 
   titleList: Title[] = [
-    { title: "ASPiRE (Association of Scientific Progress in Research and Engineering)" },
-    { title:"Enigma, IBA" },
-    { title:"Habib Adventure Society" }, 
-    { title:"Habib Anime Club" },
-    { title:"Habib Arts Society" }
+    { title: "HU Blood Drive" },
+    { title: "HU Breast Cancer Awareness Day" }
   ];
 
   positionList: Position[] = [
-    { position: "Activist" },
-    { position: "Advisor" },
-    { position: "Chair" },
-    { position: "Chief Executive Officer" },
-    { position: "Chief Financial Officer & Sponsorship Advisor" }
+    { position: "Wellness Peer" }
   ];
 
   onTypeChange(event, entryIndex, category) {
