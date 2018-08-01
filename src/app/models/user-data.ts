@@ -22,6 +22,7 @@ export class UserDetails {
 }
 
 export class EventEntry {
+  type: String = "";
   title: String = "";
   position: String = "";
   from: String = "";

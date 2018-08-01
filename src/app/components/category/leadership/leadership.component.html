@@ -10,6 +10,18 @@
       </button>
 
       <div class="floating-box__row">
+        <mat-form-field class="full-width">
+          <input type="text" placeholder="Category Type" required matInput [matAutocomplete]="autoType" [formControl]="typeControl"
+            formControlName="type" (blur)="onTypeChange($event, i, leadershipCategory)">
+        </mat-form-field>
+        <mat-autocomplete #autoType="matAutocomplete">
+          <mat-option *ngFor="let option of typeFilteredOptions | async" [value]="option.type">
+            {{option.type}}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+
+      <div class="floating-box__row">
         <!-- <mat-form-field class="full-width">
           <input type="text" matInput placeholder="HUSC Club/ Project" required formControlName="title">
         </mat-form-field> -->

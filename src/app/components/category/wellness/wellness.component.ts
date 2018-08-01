@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormGroup, FormControl } from '@angular/forms';
-import { Title, Position } from '../../../interfaces/formFields';
+import { Title, Position, Type } from '../../../interfaces/formFields';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
@@ -65,11 +65,26 @@ export class WellnessComponent implements OnInit {
     { position: "Chief Financial Officer & Sponsorship Advisor" }
   ];
 
+  onTypeChange(event, entryIndex, category) {
+    if(event.target.value && event.target.value.length) {
+      const text = event.target.value;
+      category.controls[entryIndex].controls['type'].setValue(text);
+    }
+  }
+
+  typeList: Type[] = [
+    { type: "Internal" },
+    { type: "External" }
+  ];
+
   titleControl = new FormControl();
   titleFilteredOptions: Observable<Title[]>;
 
   positionControl = new FormControl();
   positionFilteredOptions: Observable<Position[]>;
+
+  typeControl = new FormControl();
+  typeFilteredOptions: Observable<Type[]>;
 
   ngOnInit() 
   {
@@ -86,6 +101,13 @@ export class WellnessComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.position),
         map(position => position ? this._filterPosition(position) : this.positionList.slice())
       );
+
+    this.typeFilteredOptions = this.typeControl.valueChanges
+      .pipe(
+        startWith<string | Type>(''),
+        map(value => typeof value === 'string' ? value : value.type),
+        map(type => type ? this._filterType(type) : this.typeList.slice())
+      );
   }
 
   private _filterTitle(category: string): Title[] {
@@ -96,6 +118,11 @@ export class WellnessComponent implements OnInit {
   private _filterPosition(category: string): Position[] {
     const filterValue = category.toLowerCase();
     return this.positionList.filter(option => option.position.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterType(category: string): Type[] {
+    const filterValue = category.toLowerCase();
+    return this.typeList.filter(option => option.type.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormGroup, FormControl } from '@angular/forms';
-import { Title, Position } from '../../../interfaces/formFields';
+import { Title, Position, Type } from '../../../interfaces/formFields';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
@@ -49,20 +49,49 @@ export class CommunityComponent implements OnInit {
     }
   }
 
+  onTypeChange(event, entryIndex, category) {
+    if(event.target.value && event.target.value.length) {
+      const text = event.target.value;
+      category.controls[entryIndex].controls['type'].setValue(text);
+    }
+  }
+
   titleList: Title[] = [
-    { title: "ASPiRE (Association of Scientific Progress in Research and Engineering)" },
-    { title:"Enigma, IBA" },
-    { title:"Habib Adventure Society" }, 
-    { title:"Habib Anime Club" },
-    { title:"Habib Arts Society" }
+    { title: "Anti-Bullying Campaign" },
+    { title: "Bhit Island Waste Management Project" },
+    { title: "Career Development Module, HU SerVe Club" }, 
+    { title: "First Aid Training Session" },
+    { title: "HU Aap Biti-A series of Inspirational Talks" },
+    { title: "HU Blood Drive" },
+    { title: "HU Communal Spaces Initiative" },
+    { title: "HU Pinktober Cancer Awareness" }, 
+    { title: "HU Project Kaabil" },
+    { title: "HU Project Uraan" },
+    { title: "HU Service Day" },
+    { title: "HU Wall of Kindness" },
+    { title: "Iritqa-Beach Cleaning Project " }, 
+    { title: "R2G Johar Chorangi Project" },
+    { title: "Robin Hood Army" },
+    { title: "Visit to Sirat-ul Jannah Children Orphanage" }
   ];
 
   positionList: Position[] = [
-    { position: "Activist" },
-    { position: "Advisor" },
-    { position: "Chair" },
-    { position: "Chief Executive Officer" },
-    { position: "Chief Financial Officer & Sponsorship Advisor" }
+    { position: "Career Counselor" },
+    { position: "Chair" },
+    { position: "Execution Head" },
+    { position: "Founder" },
+    { position: "Host" },
+    { position: "Organizer" },
+    { position: "Participant" },
+    { position: "Project Head" },
+    { position: "Project Manager" },
+    { position: "Researcher" },
+    { position: "Volunteer" }
+  ];
+
+  typeList: Type[] = [
+    { type: "Internal" },
+    { type: "External" }
   ];
 
   titleControl = new FormControl();
@@ -70,6 +99,9 @@ export class CommunityComponent implements OnInit {
 
   positionControl = new FormControl();
   positionFilteredOptions: Observable<Position[]>;
+
+  typeControl = new FormControl();
+  typeFilteredOptions: Observable<Type[]>;
 
   ngOnInit() 
   {
@@ -86,6 +118,13 @@ export class CommunityComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.position),
         map(position => position ? this._filterPosition(position) : this.positionList.slice())
       );
+
+    this.typeFilteredOptions = this.typeControl.valueChanges
+      .pipe(
+        startWith<string | Type>(''),
+        map(value => typeof value === 'string' ? value : value.type),
+        map(type => type ? this._filterType(type) : this.typeList.slice())
+      );
   }
 
   private _filterTitle(category: string): Title[] {
@@ -96,6 +135,11 @@ export class CommunityComponent implements OnInit {
   private _filterPosition(category: string): Position[] {
     const filterValue = category.toLowerCase();
     return this.positionList.filter(option => option.position.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterType(category: string): Type[] {
+    const filterValue = category.toLowerCase();
+    return this.typeList.filter(option => option.type.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

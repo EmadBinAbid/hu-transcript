@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormGroup, FormControl } from '@angular/forms';
-import { Title, Position } from '../../../interfaces/formFields';
+import { Title, Position, Type } from '../../../interfaces/formFields';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
@@ -50,19 +50,95 @@ export class OtherComponent implements OnInit {
   }
 
   titleList: Title[] = [
-    { title: "ASPiRE (Association of Scientific Progress in Research and Engineering)" },
-    { title:"Enigma, IBA" },
-    { title:"Habib Adventure Society" }, 
-    { title:"Habib Anime Club" },
-    { title:"Habib Arts Society" }
+    { title: "40-Day Workout Challenge" },
+    { title: "Bahria University Olympiad, Karachi" },
+    { title: "Bahria University, Programming Competition" }, 
+    { title: "Baltit Academic Development Organization" },
+    { title: "Bathisland Tennis Championship, Karachi" },
+    { title: "Comic Awards" },
+    { title: "Conversation with Gender Initiative Alliance" },
+    { title: "COP in my City, Islamabad" }, 
+    { title: "Data Analysis Workshop" },
+    { title: "Design Thinking Workshop-Stanford School" },
+    { title: "Design Workshop with World Bank & Sindh Education Foundation" },
+    { title: "Ehsas Film Project" },
+    { title: "Enigma, IBA Karachi" }, 
+    { title: "First Response Initiative of Pakistan Training" },
+    { title: "German Film Festival" },
+    { title: "Girl in the River Documentary Screening" },
+    { title: "Global IEEE Xtreme Programming Competition" },
+    { title: "Hacktivision Workshop" }, 
+    { title: "HU Big Data Workshop" },
+    { title: "HU Lean Engineering Workshop" },
+    { title: "HU Maple Workshop" },
+    { title: "HU Posheeda Qadam-A Film on Violence Against Women" },
+    { title: "HU Radar Development Workshop" }, 
+    { title: "HU Sangat Workshop" },
+    { title: "Hunza Gilgit Social Welfare Organization" },
+    { title: "IEEE VoLT" },
+    { title: "IEEE Xtreme Programming Competition" },
+    { title: "International Club-Mount Mercy University Leadership and Skill Development Workshop, USA Washington DC" }, 
+    { title: "International Water Conference by Hissar Foundation" },
+    { title: "Introduction to Data Science Workshop" },
+    { title: "Leadership and Skill Development Workshop, University of Utah, USA, Salt Lake City" },
+    { title: "Leadership Summit" },
+    { title: "Lean Engineering Workshop" }, 
+    { title: "MAJU Mathematics Olympiad" },
+    { title: "Mathematika, IBA" },
+    { title: "Mulaaqaat, Student Led Talk Series" },
+    { title: "National Digital Design Conference" },
+    { title: "Nest I/O-Startup Weekend" }, 
+    { title: "PeachTech Exchange" },
+    { title: "Photographer Exhibition at T2F-Metropolis curated by Naila Mehmood" },
+    { title: "Posheeda Qadam-Documentary Screening & Talk" },
+    { title: "Power of Positive Thinking Workshop" },
+    { title: "Predictive Analytics" }, 
+    { title: "Probattle, IBA" },
+    { title: "PROCOM, FAST University" },
+    { title: "Secondary Teachers Education Program, Pakistan" },
+    { title: "SHE LOVES TECH, Pakistan Competition" },
+    { title: "She Loves TechGlobal Pitch Competition" }, 
+    { title: "Silk Route Writing Workshop" },
+    { title: "Soch K Bol - A Talk by Habib Feminist Collective" },
+    { title: "Spacetime via Geometry by Dr. Babar Qureshi" },
+    { title: "STA Tennis Championship" },
+    { title: "Thallassaemia Blood Campaign" }, 
+    { title: "The Art of Kathak" },
+    { title: "The Nest I/O, Karachi" },
+    { title: "Throw Ball Competition-IBA Sports Olympiad" },
+    { title: "Traffic Signal Campaign with Gender Inclusivity" },
+    { title: "Understanding Islam, Islamabad" }, 
+    { title: "VolleyBall Olympiad, IBA" },
+    { title: "Workshop Series on Design Thinking, Service Design, UI/UX,Design Research & Prototyping" }
   ];
 
   positionList: Position[] = [
-    { position: "Activist" },
-    { position: "Advisor" },
-    { position: "Chair" },
-    { position: "Chief Executive Officer" },
-    { position: "Chief Financial Officer & Sponsorship Advisor" }
+    { position: "Chairperson" },
+    { position: "Coordinator" },
+    { position: "Outreach Manager" },
+    { position: "Panelist" },
+    { position: "Participant" },
+    { position: "Photographer" },
+    { position: "Player" },
+    { position: "Presenter" },
+    { position: "Runners-up" },
+    { position: "Strategy Head" },
+    { position: "Usher" },
+    { position: "Vice Chair" },
+    { position: "Volunteer" },
+    { position: "Winner" }
+  ];
+
+  onTypeChange(event, entryIndex, category) {
+    if(event.target.value && event.target.value.length) {
+      const text = event.target.value;
+      category.controls[entryIndex].controls['type'].setValue(text);
+    }
+  }
+
+  typeList: Type[] = [
+    { type: "Internal" },
+    { type: "External" }
   ];
 
   titleControl = new FormControl();
@@ -70,6 +146,9 @@ export class OtherComponent implements OnInit {
 
   positionControl = new FormControl();
   positionFilteredOptions: Observable<Position[]>;
+
+  typeControl = new FormControl();
+  typeFilteredOptions: Observable<Type[]>;
 
   ngOnInit() 
   {
@@ -86,6 +165,13 @@ export class OtherComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.position),
         map(position => position ? this._filterPosition(position) : this.positionList.slice())
       );
+
+    this.typeFilteredOptions = this.typeControl.valueChanges
+      .pipe(
+        startWith<string | Type>(''),
+        map(value => typeof value === 'string' ? value : value.type),
+        map(type => type ? this._filterType(type) : this.typeList.slice())
+      );
   }
 
   private _filterTitle(category: string): Title[] {
@@ -96,6 +182,11 @@ export class OtherComponent implements OnInit {
   private _filterPosition(category: string): Position[] {
     const filterValue = category.toLowerCase();
     return this.positionList.filter(option => option.position.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterType(category: string): Type[] {
+    const filterValue = category.toLowerCase();
+    return this.typeList.filter(option => option.type.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

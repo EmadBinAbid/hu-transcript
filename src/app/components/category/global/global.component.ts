@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormGroup, FormControl } from '@angular/forms';
-import { Title, Position } from '../../../interfaces/formFields';
+import { Title, Position, Type } from '../../../interfaces/formFields';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
@@ -42,34 +42,47 @@ export class GlobalComponent implements OnInit {
     }
   }
 
-  onPositionChange(event, entryIndex, category) {
+  onTypeChange(event, entryIndex, category) {
     if(event.target.value && event.target.value.length) {
       const text = event.target.value;
-      category.controls[entryIndex].controls['position'].setValue(text);
+      category.controls[entryIndex].controls['type'].setValue(text);
     }
   }
 
   titleList: Title[] = [
-    { title: "ASPiRE (Association of Scientific Progress in Research and Engineering)" },
-    { title:"Enigma, IBA" },
-    { title:"Habib Adventure Society" }, 
-    { title:"Habib Anime Club" },
-    { title:"Habib Arts Society" }
+    { title: "Global Undergraduate Exchange Program-Troy University, Alabama, USA" },
+    { title: "Anti-Human Advocacy Leadership Program, USA" },
+    { title: "Asia Women University, Bangladesh" },
+    { title: "Bursa Chamber of Commerce BTSO, Turkey" },
+    { title: "Cultural Ambassador of Pakistan-U.s. Department of State" },
+    { title: "Entepreneurship Challenge, National University of Singapore" },
+    { title: "Enterprise Program" },
+    { title: "Global Undergraduate Exchange Program, USA" },
+    { title: "Global Youth Forum, UAE" },
+    { title: "Gulfood Exhibition, Dubai" },
+    { title: "IKU Leuven University, Belgium" },
+    { title: "International Business Forum, Turkey" },
+    { title: "Mount Mercy Activities Programming Board lowa, USA" },
+    { title: "National University of Singapore, Summer School" },
+    { title: "Stanford Summer Honors Program, USA" },
+    { title: "THAIFEX Food Exhibition, Thailand" },
+    { title: "University of California, Berkeley, Summer School" },
+    { title: "University of Geneva, Switzerland, Research Visit" },
+    { title: "University of Latvia, Research Visit" },
+    { title: "University of Michigan, USA, Summer School " },
+    { title: "Lufthansa City Centre Workshop, Germany" }
   ];
 
-  positionList: Position[] = [
-    { position: "Activist" },
-    { position: "Advisor" },
-    { position: "Chair" },
-    { position: "Chief Executive Officer" },
-    { position: "Chief Financial Officer & Sponsorship Advisor" }
+  typeList: Type[] = [
+    { type: "Internal" },
+    { type: "External" }
   ];
 
   titleControl = new FormControl();
   titleFilteredOptions: Observable<Title[]>;
 
-  positionControl = new FormControl();
-  positionFilteredOptions: Observable<Position[]>;
+  typeControl = new FormControl();
+  typeFilteredOptions: Observable<Type[]>;
 
   ngOnInit() 
   {
@@ -80,11 +93,11 @@ export class GlobalComponent implements OnInit {
         map(title => title ? this._filterTitle(title) : this.titleList.slice())
       );
 
-    this.positionFilteredOptions = this.positionControl.valueChanges
+    this.typeFilteredOptions = this.typeControl.valueChanges
       .pipe(
-        startWith<string | Position>(''),
-        map(value => typeof value === 'string' ? value : value.position),
-        map(position => position ? this._filterPosition(position) : this.positionList.slice())
+        startWith<string | Type>(''),
+        map(value => typeof value === 'string' ? value : value.type),
+        map(type => type ? this._filterType(type) : this.typeList.slice())
       );
   }
 
@@ -93,9 +106,9 @@ export class GlobalComponent implements OnInit {
     return this.titleList.filter(option => option.title.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  private _filterPosition(category: string): Position[] {
+  private _filterType(category: string): Type[] {
     const filterValue = category.toLowerCase();
-    return this.positionList.filter(option => option.position.toLowerCase().indexOf(filterValue) === 0);
+    return this.typeList.filter(option => option.type.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

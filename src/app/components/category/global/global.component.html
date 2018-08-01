@@ -22,30 +22,29 @@
         </div> -->
 
         <div class="floating-box__row">
-            <mat-form-field class="full-width">
-              <input type="text" placeholder="Program/Institution" required matInput [matAutocomplete]="autoTitle"
-                [formControl]="titleControl" formControlName="title" 
-                (blur)="onTitleChange($event, i, globalCategory)">
-            </mat-form-field>
-            <mat-autocomplete #autoTitle="matAutocomplete">
-              <mat-option *ngFor="let option of titleFilteredOptions | async" [value]="option.title">
-                {{option.title}}
-              </mat-option>
-            </mat-autocomplete>
-          </div>
-    
-          <div class="floating-box__row">
-            <mat-form-field class="full-width">
-              <input type="text" placeholder="Position" required matInput [matAutocomplete]="autoPosition" [formControl]="positionControl"
-                formControlName="position" (blur)="onPositionChange($event, i, globalCategory)">
-            </mat-form-field>
-            <mat-autocomplete #autoPosition="matAutocomplete">
-              <mat-option *ngFor="let option of positionFilteredOptions | async" [value]="option.position">
-                {{option.position}}
-              </mat-option>
-            </mat-autocomplete>
-          </div>
+          <mat-form-field class="full-width">
+            <input type="text" placeholder="Category Type" required matInput [matAutocomplete]="autoType" [formControl]="typeControl"
+              formControlName="type" (blur)="onTypeChange($event, i, globalCategory)">
+          </mat-form-field>
+          <mat-autocomplete #autoType="matAutocomplete">
+            <mat-option *ngFor="let option of typeFilteredOptions | async" [value]="option.type">
+              {{option.type}}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
 
+        <div class="floating-box__row">
+          <mat-form-field class="full-width">
+            <input type="text" placeholder="Program/Institution" required matInput [matAutocomplete]="autoTitle" [formControl]="titleControl"
+              formControlName="title" (blur)="onTitleChange($event, i, globalCategory)">
+          </mat-form-field>
+          <mat-autocomplete #autoTitle="matAutocomplete">
+            <mat-option *ngFor="let option of titleFilteredOptions | async" [value]="option.title">
+              {{option.title}}
+            </mat-option>
+          </mat-autocomplete>      
+        </div>
+    
         <div class="floating-box__row">
           <mat-form-field class="full-width">
             <input type="text" matInput placeholder="From" required formControlName="from">

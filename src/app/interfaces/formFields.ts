@@ -18,3 +18,8 @@ export interface Position
 {
   position: string;
 }
+
+export interface Type
+{
+  type: string;
+}

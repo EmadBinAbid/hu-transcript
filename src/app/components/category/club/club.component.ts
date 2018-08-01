@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormGroup, FormControl } from '@angular/forms';
-import { Title, Position } from '../../../interfaces/formFields';
+import { Title, Position, Type } from '../../../interfaces/formFields';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
@@ -49,12 +49,42 @@ export class ClubComponent implements OnInit {
     }
   }
 
+  onTypeChange(event, entryIndex, category) {
+    if(event.target.value && event.target.value.length) {
+      const text = event.target.value;
+      category.controls[entryIndex].controls['type'].setValue(text);
+    }
+  }
+
   titleList: Title[] = [
-    { title: "ASPiRE (Association of Scientific Progress in Research and Engineering)" },
-    { title:"Enigma, IBA" },
-    { title:"Habib Adventure Society" }, 
-    { title:"Habib Anime Club" },
-    { title:"Habib Arts Society" }
+    { title: "Association of Scientific Progress in Research and Engineering (ASPiRE)" },
+    { title: "Habib Adventure Society " },
+    { title: "Habib Anime Club" }, 
+    { title: "Habib Arts Society" },
+    { title: "Habib Feminist Collective" },
+    { title: "Habib Publications Society" },
+    { title: "Habib University Entrepreneurship Society" },
+    { title: "Habib University Investment Society" }, 
+    { title: "Habib University Public Speaking Society" },
+    { title: "HU Araaish e Khayal Club" },
+    { title: "HU Artificial Intelligence and Robotics Club" },
+    { title: "HU Brain.Hack() Club" },
+    { title: "HU Dream Stage Club" }, 
+    { title: "HU Eventos Club" },
+    { title: "HU Mind Boggle Club" },
+    { title: "HU Physics and Astronomy Club" },
+    { title: "HU Pi Phi Society" },
+    { title: "HU Purple Lion Productions" }, 
+    { title: "HU RAQS Club" },
+    { title: "HU SerVe Club" },
+    { title: "HU Society for Sustainibility" },
+    { title: "HU Sports & Recreation Club " },
+    { title: "HU Tachi Club" }, 
+    { title: "HU Women in Computer Science & Engineering " },
+    { title: "HU-ACES (Habib University Autonomous, Connected, Electric, Shared)" },
+    { title: "IEEE Habib University Student Chapter" },
+    { title: "Moseequi (Music)" },
+    { title: "ROAR" }
   ];
 
   positionList: Position[] = [
@@ -62,7 +92,52 @@ export class ClubComponent implements OnInit {
     { position: "Advisor" },
     { position: "Chair" },
     { position: "Chief Executive Officer" },
-    { position: "Chief Financial Officer & Sponsorship Advisor" }
+    { position: "Chief Financial Officer & Sponsorship Advisor" },
+    { position: "Chief Learning Officer" },
+    { position: "Chief Operation Officer" },
+    { position: "Communication Officer" },
+    { position: "Communications Director" },
+    { position: "Co-President" },
+    { position: "Design Director" },
+    { position: "Design Officer" },
+    { position: "Director of Logistics" },
+    { position: "Director of Marketing" },
+    { position: "Director of Outreach" },
+    { position: "Director of Parliamentary" },
+    { position: "Director of Social Affairs" },
+    { position: "Director Registration" },
+    { position: "Event Director" },
+    { position: "Event Manager" },
+    { position: "Events Photographer" },
+    { position: "Executive Coordinator" },
+    { position: "Executive Director" },
+    { position: "Head of Communication" },
+    { position: "Head of Cooperate & Sponsorship" },
+    { position: "Head of Design" },
+    { position: "Head of Operations" },
+    { position: "Logistics Manager" },
+    { position: "Management Officer" },
+    { position: "Managing Editor" },
+    { position: "Marketing Executive" },
+    { position: "Marketing Manager" },
+    { position: "Media Coordinator" },
+    { position: "Membership Chair" },
+    { position: "Operational Manager" },
+    { position: "Outreach Officer" },
+    { position: "President" },
+    { position: "Registration Officer" },
+    { position: "Secretary" },
+    { position: "Senior Vice President" },
+    { position: "Social Media Manager" },
+    { position: "Technicality Officer" },
+    { position: "Treasurer" },
+    { position: "Vice President" },
+    { position: "Web Master" }
+  ];
+
+  typeList: Type[] = [
+    { type: "Internal" },
+    { type: "External" }
   ];
 
   titleControl = new FormControl();
@@ -70,6 +145,9 @@ export class ClubComponent implements OnInit {
 
   positionControl = new FormControl();
   positionFilteredOptions: Observable<Position[]>;
+
+  typeControl = new FormControl();
+  typeFilteredOptions: Observable<Type[]>;
 
   ngOnInit() 
   {
@@ -86,6 +164,13 @@ export class ClubComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.position),
         map(position => position ? this._filterPosition(position) : this.positionList.slice())
       );
+
+    this.typeFilteredOptions = this.typeControl.valueChanges
+      .pipe(
+        startWith<string | Type>(''),
+        map(value => typeof value === 'string' ? value : value.type),
+        map(type => type ? this._filterType(type) : this.typeList.slice())
+      );
   }
 
   private _filterTitle(category: string): Title[] {
@@ -96,6 +181,11 @@ export class ClubComponent implements OnInit {
   private _filterPosition(category: string): Position[] {
     const filterValue = category.toLowerCase();
     return this.positionList.filter(option => option.position.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterType(category: string): Type[] {
+    const filterValue = category.toLowerCase();
+    return this.typeList.filter(option => option.type.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormGroup, FormControl } from '@angular/forms';
-import { Title, Position } from '../../../interfaces/formFields';
+import { Title, Position, Type } from '../../../interfaces/formFields';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
@@ -49,20 +49,177 @@ export class CampusComponent implements OnInit {
     }
   }
 
+  onTypeChange(event, entryIndex, category) {
+    if(event.target.value && event.target.value.length) {
+      const text = event.target.value;
+      category.controls[entryIndex].controls['type'].setValue(text);
+    }
+  }
+
   titleList: Title[] = [
-    { title: "ASPiRE (Association of Scientific Progress in Research and Engineering)" },
-    { title:"Enigma, IBA" },
-    { title:"Habib Adventure Society" }, 
-    { title:"Habib Anime Club" },
-    { title:"Habib Arts Society" }
+    { title: "1-1 Mentor Program" },
+    { title: "A Talk with DG Rangers Sindh" },
+    { title: "A Talk with Shaukat Dhanani" },
+    { title: "ADA-Concert & DJ Set" },
+    { title: "Akhuwat" },
+    { title: "An Afternoon with Anila Soomro by WICSE" },
+    { title: "Association for Computing Machinery" },
+    { title: "Bazm-e-Adab feature Events" },
+    { title: "Bazm-e-Aqeedat" },
+    { title: "Biology Meets Society Talk" },
+    { title: "Clinostat Session by Dr. Tim Spraklen" },
+    { title: "Club Retreat, Youth Impact" },
+    { title: "Coders Meet" },
+    { title: "Color Week" },
+    { title: "Computational Biology Workshop" },
+    { title: "Computational Thinking Programming Workshop" },
+    { title: "Computer Science BootCamp" },
+    { title: "Dance Off" },
+    { title: "Desi Sports Day" },
+    { title: "Design Intensive Workshop" },
+    { title: "Drum Circle" },
+    { title: "Eid Gala" },
+    { title: "Elements of Computing System Support Workshop" },
+    { title: "Engage for Education, TCF Awards" },
+    { title: "Engaging on Gender socialization & Empowerment" },
+    { title: "Expression Day" },
+    { title: "Golden Night" },
+    { title: "Gratitude day" },
+    { title: "Heer Ranjha" },
+    { title: "Hour of Code" },
+    { title: "HU Act of Kindness" },
+    { title: "HU Anti-Bullying Campaign" },
+    { title: "HU Arzu Anthropology" },
+    { title: "HU Basant" },
+    { title: "HU Basketball Team" },
+    { title: "HU Chai & Guftugu" },
+    { title: "HU Choir" },
+    { title: "HU Con" },
+    { title: "HU Concert" },
+    { title: "HU Cricket Team" },
+    { title: "HU Documentary- A Day in the Life of HU Lion" },
+    { title: "HU End of Semester Party" },
+    { title: "HU Etymology Workshop" },
+    { title: "HU First Aid Training" },
+    { title: "HU Gumby Concert" },
+    { title: "HU Halloween" },
+    { title: "HU Heer Ranjha" },
+    { title: "HU History Project" },
+    { title: "HU Icecream Social" },
+    { title: "HU IEEE Extreme Competition" },
+    { title: "HU Karachi Escape" },
+    { title: "HU Kashf-Student Literart Magazine" },
+    { title: "HU Mohsineen Dinner" },
+    { title: "HU Mulaaqat-Student Led Talk Series" }, 
+    { title: "HU Post-Colonial Higher Education" },
+    { title: "HU Public Speaking Society Debating Competition" },
+    { title: "HU Runway Radio Jockey" },
+    { title: "HU Road to Graduation" },
+    { title: "HU Saqafati Mela" },
+    { title: "HU Sports Olympiad" },
+    { title: "HU Transfer of Gavel" },
+    { title: "HU Two Musketeers" },
+    { title: "HU Volleyball Team" },
+    { title: "HU Week of Welcome, Student Life" },
+    { title: "HU Women in Science and Engineering" },
+    { title: "HU Writing Short Stories" },
+    { title: "HUDC by HUPSC" },
+    { title: "Human Chess" }, 
+    { title: "Human Library" },
+    { title: "HUMUN" },
+    { title: "Importance of Big data and Bit coins in the 21st century" },
+    { title: "Kahwa khana" },
+    { title: "Karachi Scape" },
+    { title: "Karaoke by HU Anime Club" },
+    { title: "Kashf-HU Student Literary Magazine" },
+    { title: "Lean Engineering Workshop" },
+    { title: "Let's Get Physical" },
+    { title: "Lunch with Domestic Staff-HU SerVe Club" },
+    { title: "Manto Play" },
+    { title: "Maple Workshop by MapleSoft" },
+    { title: "Mehfil-e-Daastan Goi" },
+    { title: "Mehfil-e-Noor" }, 
+    { title: "Meet & Greet" },
+    { title: "Meritorious Awards Ceremony" },
+    { title: "Movie Screening by AIR" },
+    { title: "Movie Screening-Manto" },
+    { title: "Movie Trivia" },
+    { title: "Nature Inspired Computing Talk" },
+    { title: "Nawroz Celebrations" },
+    { title: "Nestle Healthy Women Competition" },
+    { title: "New Student Orientation" },
+    { title: "Obituary for Stephan Hawking" },
+    { title: "Omicron by Aspire" },
+    { title: "Open Mic" },
+    { title: "Orientation Parent's Night" },
+    { title: "Overnight Retreat" }, 
+    { title: "Patterns Language of Programs (PLoP)" },
+    { title: "Photo walk" },
+    { title: "Photoshop & Illustration workshop by Arts Society & Brain.Hack()" },
+    { title: "Pinktober Breat Cancer Awareness" },
+    { title: "Pinktober (Bake Sale)" },
+    { title: "Plant Ahead" },
+    { title: "Plantation Activity-Habib Wall" },
+    { title: "Play: Bijli, Pyaar or Abba Jaan" },
+    { title: "Playground Workshop" },
+    { title: "Poori & Pajama" },
+    { title: "Ramaq" },
+    { title: "Reading Gustakh" },
+    { title: "Redesigning Pedestrian Safety Procedures" },
+    { title: "Retro Theme Party" }, 
+    { title: "Rung-o-Bayan" },
+    { title: "Sangat" },
+    { title: "Sapat Beach Trip" },
+    { title: "Saqafati Mela" },
+    { title: "Shaam – e – Jaun Elia" },
+    { title: "Silk Route Writer Workshop" },
+    { title: "Sindhi Culture Day" },
+    { title: "Soch K Bol: Talk on Gender Pronouns and Inclusiveness" },
+    { title: "Splash" },
+    { title: "Stargazing in Collabration with SUPARCO" },
+    { title: "Student Faculty Debate" },
+    { title: "Student Lounge Committee" },
+    { title: "Support Workshop for CS Students" },
+    { title: "Talk on Feminism and Promotion of Verna" }, 
+    { title: "TEDx HU" },
+    { title: "The Century of Upheavel- A European Film Festival" },
+    { title: "Throwball Competition" },
+    { title: "Traffic Signal Campaign with Gender Inclusivity" },
+    { title: "Transfer of Gavel" },
+    { title: "Treasure Hunt" },
+    { title: "Tug of War" },
+    { title: "Ulat Phulat Day" },
+    { title: "Winter Wonderland" },
+    { title: "Women in Journalism" }
   ];
 
   positionList: Position[] = [
-    { position: "Activist" },
-    { position: "Advisor" },
-    { position: "Chair" },
-    { position: "Chief Executive Officer" },
-    { position: "Chief Financial Officer & Sponsorship Advisor" }
+    { position: "Actor" },
+    { position: "Core Member" },
+    { position: "Designer" },
+    { position: "DJ" },
+    { position: "Editor" },
+    { position: "Event Director" },
+    { position: "Event Head" },
+    { position: "Facilitator" },
+    { position: "Founder" },
+    { position: "Moderator" },
+    { position: "Organizer" },
+    { position: "Orientation Leader" }, 
+    { position: "Performer" },
+    { position: "Photographer" },
+    { position: "Runnerup" },
+    { position: "Speaker" },
+    { position: "Trainer" },
+    { position: "Usher" },
+    { position: "Vocalist" },
+    { position:  "Volunteer" },
+    { position: "Winner" }
+  ];
+
+  typeList: Type[] = [
+    { type: "Internal" },
+    { type: "External" }
   ];
 
   titleControl = new FormControl();
@@ -70,6 +227,9 @@ export class CampusComponent implements OnInit {
 
   positionControl = new FormControl();
   positionFilteredOptions: Observable<Position[]>;
+
+  typeControl = new FormControl();
+  typeFilteredOptions: Observable<Type[]>;
 
   ngOnInit() 
   {
@@ -86,6 +246,13 @@ export class CampusComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.position),
         map(position => position ? this._filterPosition(position) : this.positionList.slice())
       );
+
+    this.typeFilteredOptions = this.typeControl.valueChanges
+      .pipe(
+        startWith<string | Type>(''),
+        map(value => typeof value === 'string' ? value : value.type),
+        map(type => type ? this._filterType(type) : this.typeList.slice())
+      );
   }
 
   private _filterTitle(category: string): Title[] {
@@ -96,6 +263,11 @@ export class CampusComponent implements OnInit {
   private _filterPosition(category: string): Position[] {
     const filterValue = category.toLowerCase();
     return this.positionList.filter(option => option.position.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterType(category: string): Type[] {
+    const filterValue = category.toLowerCase();
+    return this.typeList.filter(option => option.type.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }
