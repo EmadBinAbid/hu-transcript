@@ -22,7 +22,7 @@ export class AdminDetailsComponent implements OnInit {
 
   viewAttachment(category, index)
   {
-    window.location.href = 
-    `http://localhost:3000/form/upload/download?studentID=${this.currentFormItem['studentID']}&filename=${this.currentFormItem['studentID']}_${category}_${index}`;
+    window.open(`http://localhost:3000/form/upload/download?studentID=${this.currentFormItem['studentID']}&filename=${this.currentFormItem['studentID']}_${category}_${index}`, 
+    '_blank');
   }
 }

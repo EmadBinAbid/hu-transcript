@@ -68,7 +68,7 @@
         <p>Enter proof:</p>
         <div class="form-category__file-button">
           <button type="submit" mat-raised-button color="accent">Upload</button>
-          <input id="uploadedfile" type="file" [required]="isRequired"  name="imageUpload" (change)="onFileChange($event, i, leadershipCategory)">
+          <input id="uploadedfile" type="file" name="imageUpload" (change)="onFileChange($event, i, leadershipCategory)">
           <input type="hidden" name="imageHidden" formControlName="image"/>
         </div>
       </div>
