@@ -73,8 +73,10 @@
         <div class="floating-box__row">
           <p>Enter proof:</p>
           <div class="form-category__file-button">
+            <label style="color: red" *ngIf="isRequired===true">Proof upload is mandatory for "External" category type.</label><br>
             <button type="submit" mat-raised-button color="accent">Upload</button>
             <input type="file" name="imageUpload" (change)="onFileChange($event, i, devCategory)">
+            <input type="text" matInput disabled placeholder="{{uploadedFileName}}" required="{{isRequired}}" formControlName="fileUpload"/>
             <input type="hidden" name="imageHidden" formControlName="image"/>
           </div>
         </div>

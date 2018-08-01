@@ -28,6 +28,7 @@ export class EventEntry {
   from: String = "";
   to: String = "";
   image: Object = {};
+  fileUpload: String = "";
 }
 
 export class UserCategories {

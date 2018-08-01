@@ -13,7 +13,8 @@ export class LeadershipComponent implements OnInit {
   @Input() group: FormGroup;
   @Output() eventRemoved = new EventEmitter<any>();
 
-  isRequired: boolean = false;
+  isRequired: boolean;
+  uploadedFileName: string = "No file choosen";
 
   constructor() {}
 
@@ -33,6 +34,13 @@ export class LeadershipComponent implements OnInit {
     if(event.target.files && event.target.files.length) {
       const file = event.target.files;
       category.controls[entryIndex].controls['image'].setValue(file[0]);
+      this.uploadedFileName = file[0].name;
+      this.isRequired = false;
+    }
+    else
+    {
+      this.uploadedFileName = "No file choosen";
+      this.isRequired = true;
     }
   }
 
@@ -55,13 +63,13 @@ export class LeadershipComponent implements OnInit {
       const text = event.target.value;
       category.controls[entryIndex].controls['kind'].setValue(text);
 
-      if(text === "External")
+      if(text === "Internal")
+      {
+        this.isRequired = false;
+      }
+      else
       {
         this.isRequired = true;
-        // var uploadedFile = <HTMLInputElement>document.getElementById('uploadedfile');
-        // uploadedFile.required = true;
-        // console.log(uploadedFile['required']);
-        //category.controls[entryIndex].controls['image'].setValue([null, Validators.required]);
       }
     }
   }

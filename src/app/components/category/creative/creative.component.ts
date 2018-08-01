@@ -13,6 +13,9 @@ export class CreativeComponent implements OnInit {
   @Input() group: FormGroup;
   @Output() eventRemoved = new EventEmitter<any>();
 
+  isRequired: boolean;
+  uploadedFileName: string = "No file choosen";
+
   constructor() {
   }
 
@@ -20,6 +23,13 @@ export class CreativeComponent implements OnInit {
     if(event.target.files && event.target.files.length) {
       const file = event.target.files;
       category.controls[entryIndex].controls['image'].setValue(file[0]);
+      this.uploadedFileName = file[0].name;
+      this.isRequired = false;
+    }
+    else
+    {
+      this.uploadedFileName = "No file choosen";
+      this.isRequired = true;
     }
   }
 
@@ -53,6 +63,15 @@ export class CreativeComponent implements OnInit {
     if(event.target.value && event.target.value.length) {
       const text = event.target.value;
       category.controls[entryIndex].controls['kind'].setValue(text);
+
+      if(text === "Internal")
+      {
+        this.isRequired = false;
+      }
+      else
+      {
+        this.isRequired = true;
+      }
     }
   }
 
