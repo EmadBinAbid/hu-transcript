@@ -19,7 +19,7 @@ export interface Position
   position: string;
 }
 
-export interface Type
+export interface Kind
 {
-  type: string;
+  kind: string;
 }

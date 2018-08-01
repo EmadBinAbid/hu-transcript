@@ -25,6 +25,7 @@ export class FormService {
       {
         for(var i=0; i<currentEntry[key].length; i++)
         {
+          requestObject.append(key + '['+ i + '][kind]', currentEntry[key][i]["kind"]);
           requestObject.append(key + '['+ i + '][title]', currentEntry[key][i]["title"]);
           requestObject.append(key + '['+ i + '][position]', currentEntry[key][i]["position"]);
           requestObject.append(key + '['+ i + '][from]', currentEntry[key][i]["from"]);

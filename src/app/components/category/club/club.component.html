@@ -23,12 +23,12 @@
 
         <div class="floating-box__row">
         <mat-form-field class="full-width">
-          <input type="text" placeholder="Category Type" required matInput [matAutocomplete]="autoType" [formControl]="typeControl"
-            formControlName="type" (blur)="onTypeChange($event, i, clubCategory)">
+          <input type="text" placeholder="Category Type" required matInput [matAutocomplete]="autoKind" [formControl]="kindControl"
+            formControlName="kind" (blur)="onKindChange($event, i, clubCategory)">
         </mat-form-field>
-        <mat-autocomplete #autoType="matAutocomplete">
-          <mat-option *ngFor="let option of typeFilteredOptions | async" [value]="option.type">
-            {{option.type}}
+        <mat-autocomplete #autoKind="matAutocomplete">
+          <mat-option *ngFor="let option of kindFilteredOptions | async" [value]="option.kind">
+            {{option.kind}}
           </mat-option>
         </mat-autocomplete>
         </div>

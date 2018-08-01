@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { FormArray, FormGroup, FormControl } from '@angular/forms';
-import { Title, Position, Type } from '../../../interfaces/formFields';
+import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Title, Position, Kind } from '../../../interfaces/formFields';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
@@ -12,6 +12,8 @@ import { startWith, map } from 'rxjs/operators';
 export class LeadershipComponent implements OnInit {
   @Input() group: FormGroup;
   @Output() eventRemoved = new EventEmitter<any>();
+
+  isRequired: boolean = false;
 
   constructor() {}
 
@@ -48,10 +50,19 @@ export class LeadershipComponent implements OnInit {
     }
   }
 
-  onTypeChange(event, entryIndex, category) {
+  onKindChange(event, entryIndex, category) {
     if(event.target.value && event.target.value.length) {
       const text = event.target.value;
-      category.controls[entryIndex].controls['type'].setValue(text);
+      category.controls[entryIndex].controls['kind'].setValue(text);
+
+      if(text === "External")
+      {
+        this.isRequired = true;
+        // var uploadedFile = <HTMLInputElement>document.getElementById('uploadedfile');
+        // uploadedFile.required = true;
+        // console.log(uploadedFile['required']);
+        //category.controls[entryIndex].controls['image'].setValue([null, Validators.required]);
+      }
     }
   }
 
@@ -176,9 +187,9 @@ export class LeadershipComponent implements OnInit {
     { position: "Web Master" }
   ];
 
-  typeList: Type[] = [
-    { type: "Internal" },
-    { type: "External" }
+  kindList: Kind[] = [
+    { kind: "Internal" },
+    { kind: "External" }
   ];
 
   titleControl = new FormControl();
@@ -187,8 +198,8 @@ export class LeadershipComponent implements OnInit {
   positionControl = new FormControl();
   positionFilteredOptions: Observable<Position[]>;
 
-  typeControl = new FormControl();
-  typeFilteredOptions: Observable<Type[]>;
+  kindControl = new FormControl();
+  kindFilteredOptions: Observable<Kind[]>;
 
   ngOnInit() 
   {
@@ -206,11 +217,11 @@ export class LeadershipComponent implements OnInit {
         map(position => position ? this._filterPosition(position) : this.positionList.slice())
       );
 
-    this.typeFilteredOptions = this.typeControl.valueChanges
+    this.kindFilteredOptions = this.kindControl.valueChanges
       .pipe(
-        startWith<string | Type>(''),
-        map(value => typeof value === 'string' ? value : value.type),
-        map(type => type ? this._filterType(type) : this.typeList.slice())
+        startWith<string | Kind>(''),
+        map(value => typeof value === 'string' ? value : value.kind),
+        map(kind => kind ? this._filterKind(kind) : this.kindList.slice())
       );
   }
 
@@ -224,8 +235,8 @@ export class LeadershipComponent implements OnInit {
     return this.positionList.filter(option => option.position.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  private _filterType(category: string): Type[] {
+  private _filterKind(category: string): Kind[] {
     const filterValue = category.toLowerCase();
-    return this.typeList.filter(option => option.type.toLowerCase().indexOf(filterValue) === 0);
+    return this.kindList.filter(option => option.kind.toLowerCase().indexOf(filterValue) === 0);
   }
 }
