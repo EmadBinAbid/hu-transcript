@@ -27,8 +27,10 @@ export class DetailsComponent implements OnInit {
 
   changeApprovedStatus(isApproved: Boolean, categoryName: String, index)
   {
+    console.log(JSON.parse(localStorage.getItem('supervisor_currentFormItem')));
+
     var category = this.currentFormItem[`${categoryName}`]; 
-    category = category[0];
+    category = category[index];
     const currentId = category['_id']
     
     const requestBody = {
@@ -37,6 +39,8 @@ export class DetailsComponent implements OnInit {
       _id: currentId,
       isApproved: isApproved
     };
+
+    //console.log(requestBody);
 
     //Subscribe to api
     this.formService.changeApprovedStatus(isApproved, requestBody)
